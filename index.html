@@ -1396,6 +1396,8 @@
       padding: 2px 4px;
       border-radius: 3px;
       font-size: 0.75rem;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
 
     /* Toast Message */
@@ -1871,11 +1873,11 @@
           <ol>
             <li><strong>Rule(규칙)로 상시 지정:</strong><br>
               프로젝트 루트에 <code>.agents/AGENTS.md</code>를 생성하거나, PC 전역 설정인 <code>C:\Users\redof\.gemini\config\AGENTS.md</code> 파일 끝에 아래 양식으로 위 프롬프트를 추가합니다.<br>
-              <code style="display:block;margin:4px 0;padding:4px;background:rgba(0,0,0,0.03);font-size:0.7rem;white-space:pre;"># CSS Guidelines&#13;[복사한 AI 프롬프트 삽입]</code>
+              <code style="display:block;margin:4px 0;padding:4px;background:rgba(0,0,0,0.03);font-size:0.7rem;white-space:pre-wrap;word-break:break-all;"># CSS Guidelines&#13;[복사한 AI 프롬프트 삽입]</code>
             </li>
             <li><strong>Skill(스킬)로 개별 지정:</strong><br>
               프로젝트 내 <code>.agents/skills/skin-custom/SKILL.md</code> 경로로 새 폴더 및 마크다운을 만듭니다. 앞부분에 아래 메타데이터(Frontmatter)를 지정하고 본문에 코드를 삽입하세요.<br>
-              <code style="display:block;margin:4px 0;padding:4px;background:rgba(0,0,0,0.03);font-size:0.7rem;white-space:pre;">---&#13;name: design-skin&#13;description: CSS 테마 디자인 스킨 가이드&#13;---&#13;# CSS Skin Variables&#13;[복사한 CSS 테마 변수 삽입]</code>
+              <code style="display:block;margin:4px 0;padding:4px;background:rgba(0,0,0,0.03);font-size:0.7rem;white-space:pre-wrap;word-break:break-all;">---&#13;name: design-skin&#13;description: CSS 테마 디자인 스킨 가이드&#13;---&#13;# CSS Skin Variables&#13;[복사한 CSS 테마 변수 삽입]</code>
             </li>
           </ol>
         </div>
