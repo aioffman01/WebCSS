@@ -1,0 +1,2108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Skin System Showcase & Prompt Generator</title>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    /* Base Design System and Styling */
+    :root {
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --transition-speed: 0.3s;
+      --sidebar-width: 280px;
+    }
+
+    /* 1. Clean Corporate (기본) */
+    [data-theme="clean-corporate"] {
+      --bg-app: #f4f6f9;
+      --bg-sidebar: #0f172a;
+      --bg-card: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --text-sidebar: #94a3b8;
+      --text-sidebar-active: #ffffff;
+      --sidebar-hover-bg: #1e293b;
+      --sidebar-active-bg: #2563eb;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --accent: #f59e0b;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+    }
+
+    /* 2. Neo Cyberpunk */
+    [data-theme="neo-cyberpunk"] {
+      --bg-app: #0a0512;
+      --bg-sidebar: #06010b;
+      --bg-card: #130a24;
+      --text-main: #e2d9f3;
+      --text-muted: #8b7ca6;
+      --text-sidebar: #796699;
+      --text-sidebar-active: #39ff14;
+      --sidebar-hover-bg: #21123a;
+      --sidebar-active-bg: #ff007f;
+      --primary: #ff007f;
+      --primary-hover: #e00070;
+      --primary-light: rgba(255, 0, 127, 0.15);
+      --accent: #00ffff;
+      --border-color: #3b1e6d;
+      --shadow-sm: 0 0 5px rgba(255, 0, 127, 0.3);
+      --shadow-md: 0 0 15px rgba(255, 0, 127, 0.4), 0 0 5px rgba(0, 255, 255, 0.2);
+      --shadow-lg: 0 0 25px rgba(255, 0, 127, 0.5), 0 0 10px rgba(0, 255, 255, 0.4);
+      --radius-sm: 2px;
+      --radius-md: 4px;
+      --radius-lg: 8px;
+    }
+
+    /* 3. Minimalist Nordic */
+    [data-theme="minimalist-nordic"] {
+      --bg-app: #fafafa;
+      --bg-sidebar: #eceff1;
+      --bg-card: #ffffff;
+      --text-main: #2d3748;
+      --text-muted: #718096;
+      --text-sidebar: #4a5568;
+      --text-sidebar-active: #1a202c;
+      --sidebar-hover-bg: #e2e8f0;
+      --sidebar-active-bg: #cbd5e0;
+      --primary: #4a5568;
+      --primary-hover: #2d3748;
+      --primary-light: #edf2f7;
+      --accent: #dd6b20;
+      --border-color: #e2e8f0;
+      --shadow-sm: 0 1px 1px rgba(0,0,0,0.02);
+      --shadow-md: 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 4px 8px rgba(0,0,0,0.06);
+      --radius-sm: 4px;
+      --radius-md: 6px;
+      --radius-lg: 10px;
+    }
+
+    /* 4. Glassmorphism */
+    [data-theme="glassmorphism"] {
+      --bg-app: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+      --bg-sidebar: rgba(255, 255, 255, 0.35);
+      --bg-card: rgba(255, 255, 255, 0.45);
+      --text-main: #2c3e50;
+      --text-muted: #576574;
+      --text-sidebar: #2c3e50;
+      --text-sidebar-active: #0984e3;
+      --sidebar-hover-bg: rgba(255, 255, 255, 0.5);
+      --sidebar-active-bg: rgba(255, 255, 255, 0.7);
+      --primary: #0984e3;
+      --primary-hover: #74b9ff;
+      --primary-light: rgba(9, 132, 227, 0.1);
+      --accent: #e17055;
+      --border-color: rgba(255, 255, 255, 0.3);
+      --shadow-sm: 0 2px 8px rgba(31, 38, 135, 0.05);
+      --shadow-md: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+      --shadow-lg: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* 5. Retro Terminal */
+    [data-theme="retro-terminal"] {
+      --bg-app: #000000;
+      --bg-sidebar: #050505;
+      --bg-card: #080808;
+      --text-main: #33ff33;
+      --text-muted: #1e9d1e;
+      --text-sidebar: #1e9d1e;
+      --text-sidebar-active: #33ff33;
+      --sidebar-hover-bg: #111111;
+      --sidebar-active-bg: #222222;
+      --primary: #33ff33;
+      --primary-hover: #1e9d1e;
+      --primary-light: rgba(51, 255, 51, 0.1);
+      --accent: #ffb300;
+      --border-color: #33ff33;
+      --shadow-sm: none;
+      --shadow-md: 0 0 10px rgba(51, 255, 51, 0.2);
+      --shadow-lg: 0 0 20px rgba(51, 255, 51, 0.3);
+      --radius-sm: 0px;
+      --radius-md: 0px;
+      --radius-lg: 0px;
+      font-family: var(--font-mono);
+    }
+
+    /* 6. Forest & Moss */
+    [data-theme="forest-moss"] {
+      --bg-app: #f2f4f0;
+      --bg-sidebar: #2b3a30;
+      --bg-card: #ffffff;
+      --text-main: #1c2820;
+      --text-muted: #5e6f64;
+      --text-sidebar: #a3b2a4;
+      --text-sidebar-active: #ffffff;
+      --sidebar-hover-bg: #354a3e;
+      --sidebar-active-bg: #4f6f52;
+      --primary: #4f6f52;
+      --primary-hover: #3a533d;
+      --primary-light: #ecefe6;
+      --accent: #c08261;
+      --border-color: #dbe1d9;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+    }
+
+    /* 7. Royal Dark & Gold */
+    [data-theme="royal-dark-gold"] {
+      --bg-app: #0f141c;
+      --bg-sidebar: #0a0d14;
+      --bg-card: #161c26;
+      --text-main: #e2e8f0;
+      --text-muted: #718096;
+      --text-sidebar: #a0aec0;
+      --text-sidebar-active: #dfb15b;
+      --sidebar-hover-bg: #1c2432;
+      --sidebar-active-bg: #242f41;
+      --primary: #dfb15b;
+      --primary-hover: #cfa14b;
+      --primary-light: rgba(223, 177, 91, 0.1);
+      --accent: #e53e3e;
+      --border-color: #2d3748;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 10px rgba(0,0,0,0.4);
+      --shadow-lg: 0 10px 25px rgba(0,0,0,0.5);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    /* 8. Pastel Candy */
+    [data-theme="pastel-candy"] {
+      --bg-app: #fff9fc;
+      --bg-sidebar: #ffeef8;
+      --bg-card: #ffffff;
+      --text-main: #4a3e4d;
+      --text-muted: #a38fa8;
+      --text-sidebar: #927599;
+      --text-sidebar-active: #ff6584;
+      --sidebar-hover-bg: #ffdbe9;
+      --sidebar-active-bg: #ffccd9;
+      --primary: #ff7675;
+      --primary-hover: #ff6584;
+      --primary-light: #fff2f2;
+      --accent: #fdcb6e;
+      --border-color: #ffdce9;
+      --shadow-sm: 0 2px 4px rgba(255, 118, 117, 0.05);
+      --shadow-md: 0 6px 12px rgba(255, 118, 117, 0.08);
+      --shadow-lg: 0 12px 24px rgba(255, 118, 117, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 22px;
+    }
+
+    /* 9. Sunset Orange */
+    [data-theme="sunset-orange"] {
+      --bg-app: #fdf5f2;
+      --bg-sidebar: #1e120f;
+      --bg-card: #ffffff;
+      --text-main: #33180f;
+      --text-muted: #8c7670;
+      --text-sidebar: #c4b5b1;
+      --text-sidebar-active: #ff7a59;
+      --sidebar-hover-bg: #2d1c18;
+      --sidebar-active-bg: #ff7a59;
+      --primary: #ff5c35;
+      --primary-hover: #e04a25;
+      --primary-light: #fff0eb;
+      --accent: #20b2aa;
+      --border-color: #f7e6e1;
+      --shadow-sm: 0 1px 3px rgba(255, 92, 53, 0.05);
+      --shadow-md: 0 5px 12px rgba(255, 92, 53, 0.08);
+      --shadow-lg: 0 10px 20px rgba(255, 92, 53, 0.12);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+    }
+
+    /* 10. Ocean Breeze */
+    [data-theme="ocean-breeze"] {
+      --bg-app: #f0f8ff;
+      --bg-sidebar: #0c2340;
+      --bg-card: #ffffff;
+      --text-main: #0c2340;
+      --text-muted: #506982;
+      --text-sidebar: #93a5b8;
+      --text-sidebar-active: #00ffff;
+      --sidebar-hover-bg: #13335c;
+      --sidebar-active-bg: #008080;
+      --primary: #008080;
+      --primary-hover: #006666;
+      --primary-light: #e0f2f2;
+      --accent: #ff8c00;
+      --border-color: #d2e4f0;
+      --shadow-sm: 0 1px 3px rgba(12, 35, 64, 0.05);
+      --shadow-md: 0 4px 10px rgba(12, 35, 64, 0.08);
+      --shadow-lg: 0 10px 20px rgba(12, 35, 64, 0.1);
+      --radius-sm: 5px;
+      --radius-md: 10px;
+      --radius-lg: 15px;
+    }
+
+    /* 11. Dracula & Orchid (신규) */
+    [data-theme="dracula-orchid"] {
+      --bg-app: #282a36;
+      --bg-sidebar: #1e1f29;
+      --bg-card: #343746;
+      --text-main: #f8f8f2;
+      --text-muted: #6272a4;
+      --text-sidebar: #6272a4;
+      --text-sidebar-active: #50fa7b;
+      --sidebar-hover-bg: #2d2f3b;
+      --sidebar-active-bg: #bd93f9;
+      --primary: #ff79c6;
+      --primary-hover: #ff92df;
+      --primary-light: rgba(189, 147, 249, 0.15);
+      --accent: #f1fa8c;
+      --border-color: #44475a;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);
+      --shadow-md: 0 4px 8px rgba(0,0,0,0.3);
+      --shadow-lg: 0 8px 16px rgba(0,0,0,0.4);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    /* 12. Vintage Sepia (신규) */
+    [data-theme="vintage-sepia"] {
+      --bg-app: #f4ecd8;
+      --bg-sidebar: #4a3c31;
+      --bg-card: #fdfaf2;
+      --text-main: #3E2723;
+      --text-muted: #8D6E63;
+      --text-sidebar: #d7ccc8;
+      --text-sidebar-active: #f4ecd8;
+      --sidebar-hover-bg: #5d4a3c;
+      --sidebar-active-bg: #8d6e63;
+      --primary: #8d6e63;
+      --primary-hover: #6d4c41;
+      --primary-light: #efebe9;
+      --accent: #bf360c;
+      --border-color: #d7ccc8;
+      --shadow-sm: 0 1px 2px rgba(74,60,49,0.05);
+      --shadow-md: 0 3px 6px rgba(74,60,49,0.08);
+      --shadow-lg: 0 6px 12px rgba(74,60,49,0.1);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 14px;
+    }
+
+    /* 13. Cyber Lime & Slate (신규) */
+    [data-theme="cyber-lime"] {
+      --bg-app: #0f172a;
+      --bg-sidebar: #020617;
+      --bg-card: #1e293b;
+      --text-main: #f1f5f9;
+      --text-muted: #64748b;
+      --text-sidebar: #475569;
+      --text-sidebar-active: #ccff00;
+      --sidebar-hover-bg: #0f172a;
+      --sidebar-active-bg: #334155;
+      --primary: #ccff00;
+      --primary-hover: #b3e600;
+      --primary-light: rgba(204, 255, 0, 0.1);
+      --accent: #38bdf8;
+      --border-color: #334155;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.1);
+      --shadow-md: 0 4px 6px rgba(0,0,0,0.15);
+      --shadow-lg: 0 10px 15px rgba(0,0,0,0.2);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 14px;
+    }
+
+    /* 14. Swiss Design Grid (신규) */
+    [data-theme="swiss-design"] {
+      --bg-app: #ffffff;
+      --bg-sidebar: #000000;
+      --bg-card: #ffffff;
+      --text-main: #000000;
+      --text-muted: #666666;
+      --text-sidebar: #999999;
+      --text-sidebar-active: #ffffff;
+      --sidebar-hover-bg: #222222;
+      --sidebar-active-bg: #ff0000;
+      --primary: #ff0000;
+      --primary-hover: #cc0000;
+      --primary-light: #ffe6e6;
+      --accent: #0000ff;
+      --border-color: #000000;
+      --shadow-sm: none;
+      --shadow-md: none;
+      --shadow-lg: none;
+      --radius-sm: 0px;
+      --radius-md: 0px;
+      --radius-lg: 0px;
+    }
+
+    /* 15. Desert Clay (신규) */
+    [data-theme="desert-clay"] {
+      --bg-app: #f9f5f0;
+      --bg-sidebar: #4d2f21;
+      --bg-card: #ffffff;
+      --text-main: #3d2418;
+      --text-muted: #8c7265;
+      --text-sidebar: #d9c5bd;
+      --text-sidebar-active: #ffb88c;
+      --sidebar-hover-bg: #5d3b2b;
+      --sidebar-active-bg: #c97e5d;
+      --primary: #c97e5d;
+      --primary-hover: #b06544;
+      --primary-light: #f7ede9;
+      --accent: #d4a373;
+      --border-color: #eedcd4;
+      --shadow-sm: 0 1px 3px rgba(77,47,33,0.05);
+      --shadow-md: 0 4px 8px rgba(77,47,33,0.08);
+      --shadow-lg: 0 8px 16px rgba(77,47,33,0.1);
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+    }
+
+    /* 16. Midnight Aurora (신규) */
+    [data-theme="midnight-aurora"] {
+      --bg-app: #030712;
+      --bg-sidebar: #0b0f19;
+      --bg-card: #111827;
+      --text-main: #f9fafb;
+      --text-muted: #6b7280;
+      --text-sidebar: #4b5563;
+      --text-sidebar-active: #10b981;
+      --sidebar-hover-bg: #1f2937;
+      --sidebar-active-bg: #14b8a6;
+      --primary: #14b8a6;
+      --primary-hover: #0d9488;
+      --primary-light: rgba(20, 184, 166, 0.15);
+      --accent: #3b82f6;
+      --border-color: #1f2937;
+      --shadow-sm: 0 0 4px rgba(20, 184, 166, 0.1);
+      --shadow-md: 0 0 12px rgba(20, 184, 166, 0.25);
+      --shadow-lg: 0 0 20px rgba(20, 184, 166, 0.4);
+      --radius-sm: 5px;
+      --radius-md: 10px;
+      --radius-lg: 18px;
+    }
+
+    /* 17. Soft Lavender (신규) */
+    [data-theme="soft-lavender"] {
+      --bg-app: #f5f3ff;
+      --bg-sidebar: #312e81;
+      --bg-card: #ffffff;
+      --text-main: #1e1b4b;
+      --text-muted: #6366f1;
+      --text-sidebar: #c7d2fe;
+      --text-sidebar-active: #ffffff;
+      --sidebar-hover-bg: #3730a3;
+      --sidebar-active-bg: #4f46e5;
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --primary-light: #e0e7ff;
+      --accent: #ec4899;
+      --border-color: #e0e7ff;
+      --shadow-sm: 0 1px 3px rgba(99,102,241,0.05);
+      --shadow-md: 0 4px 8px rgba(99,102,241,0.08);
+      --shadow-lg: 0 8px 16px rgba(99,102,241,0.12);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    /* 18. High Contrast (신규) */
+    [data-theme="high-contrast"] {
+      --bg-app: #000000;
+      --bg-sidebar: #000000;
+      --bg-card: #000000;
+      --text-main: #ffffff;
+      --text-muted: #ffff00;
+      --text-sidebar: #ffffff;
+      --text-sidebar-active: #ffff00;
+      --sidebar-hover-bg: #333333;
+      --sidebar-active-bg: #ffff00;
+      --primary: #ffff00;
+      --primary-hover: #cccc00;
+      --primary-light: rgba(255,255,0,0.15);
+      --accent: #00ffff;
+      --border-color: #ffffff;
+      --shadow-sm: none;
+      --shadow-md: none;
+      --shadow-lg: none;
+      --radius-sm: 0px;
+      --radius-md: 0px;
+      --radius-lg: 0px;
+    }
+
+    /* 19. Neo-Brutalism (신규) */
+    [data-theme="neo-brutalism"] {
+      --bg-app: #fef08a;
+      --bg-sidebar: #ffffff;
+      --bg-card: #ffffff;
+      --text-main: #000000;
+      --text-muted: #000000;
+      --text-sidebar: #000000;
+      --text-sidebar-active: #000000;
+      --sidebar-hover-bg: #e2e8f0;
+      --sidebar-active-bg: #38bdf8;
+      --primary: #38bdf8;
+      --primary-hover: #0ea5e9;
+      --primary-light: #e0f2fe;
+      --accent: #f43f5e;
+      --border-color: #000000;
+      --shadow-sm: 2px 2px 0px #000000;
+      --shadow-md: 4px 4px 0px #000000;
+      --shadow-lg: 8px 8px 0px #000000;
+      --radius-sm: 0px;
+      --radius-md: 0px;
+      --radius-lg: 0px;
+    }
+
+    /* 20. Rose Gold & Luxury (신규) */
+    [data-theme="rose-gold"] {
+      --bg-app: #FAF5F5;
+      --bg-sidebar: #1F1B1B;
+      --bg-card: #ffffff;
+      --text-main: #2A2424;
+      --text-muted: #9F8282;
+      --text-sidebar: #D1C4C4;
+      --text-sidebar-active: #E5A9A9;
+      --sidebar-hover-bg: #2B2525;
+      --sidebar-active-bg: #C78282;
+      --primary: #C78282;
+      --primary-hover: #B06B6B;
+      --primary-light: #FCEFEF;
+      --accent: #E3B484;
+      --border-color: #F0E1E1;
+      --shadow-sm: 0 1px 3px rgba(199,130,130,0.06);
+      --shadow-md: 0 4px 10px rgba(199,130,130,0.1);
+      --shadow-lg: 0 8px 20px rgba(199,130,130,0.15);
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+    }
+
+    /* Reset & Global */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg-app);
+      color: var(--text-main);
+      transition: background var(--transition-speed), color var(--transition-speed);
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    /* Custom Border adjustments for Brutalism and Swiss themes */
+    [data-theme="swiss-design"] .card,
+    [data-theme="swiss-design"] .sidebar,
+    [data-theme="swiss-design"] .main-header,
+    [data-theme="swiss-design"] .btn,
+    [data-theme="swiss-design"] input,
+    [data-theme="swiss-design"] select,
+    [data-theme="swiss-design"] th,
+    [data-theme="swiss-design"] td,
+    [data-theme="swiss-design"] .calendar-day,
+    [data-theme="high-contrast"] .card,
+    [data-theme="high-contrast"] .sidebar,
+    [data-theme="high-contrast"] .main-header,
+    [data-theme="high-contrast"] .btn,
+    [data-theme="high-contrast"] input,
+    [data-theme="high-contrast"] select,
+    [data-theme="high-contrast"] th,
+    [data-theme="high-contrast"] td,
+    [data-theme="high-contrast"] .calendar-day,
+    [data-theme="neo-brutalism"] .card,
+    [data-theme="neo-brutalism"] .sidebar,
+    [data-theme="neo-brutalism"] .main-header,
+    [data-theme="neo-brutalism"] .btn,
+    [data-theme="neo-brutalism"] input,
+    [data-theme="neo-brutalism"] select,
+    [data-theme="neo-brutalism"] th,
+    [data-theme="neo-brutalism"] td,
+    [data-theme="neo-brutalism"] .calendar-day {
+      border: 2px solid var(--border-color) !important;
+    }
+
+    [data-theme="high-contrast"] .btn-primary {
+      color: #000000 !important;
+      font-weight: bold;
+    }
+
+    [data-theme="neo-brutalism"] .btn-primary {
+      color: #000000 !important;
+      font-weight: 800;
+    }
+
+    .app-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      position: relative;
+    }
+
+    /* Sidebar Styling */
+    .sidebar {
+      width: var(--sidebar-width);
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      color: var(--text-sidebar);
+      transition: background var(--transition-speed), border-color var(--transition-speed);
+      flex-shrink: 0;
+    }
+
+    .sidebar-header {
+      padding: 24px 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--text-sidebar-active);
+    }
+
+    .logo-icon {
+      width: 24px;
+      height: 24px;
+      color: var(--primary);
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 20px 10px;
+      overflow-y: auto;
+    }
+
+    /* Tree Menu */
+    .tree-menu {
+      list-style: none;
+    }
+
+    .tree-node {
+      margin-bottom: 8px;
+    }
+
+    .tree-node-title {
+      display: flex;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      gap: 8px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .tree-node-title:hover {
+      background: var(--sidebar-hover-bg);
+      color: var(--text-sidebar-active);
+    }
+
+    .chevron-icon {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s;
+    }
+
+    .tree-node:not(.open) .chevron-icon {
+      transform: rotate(-90deg);
+    }
+
+    .folder-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .tree-children {
+      list-style: none;
+      padding-left: 20px;
+      margin-top: 4px;
+      transition: max-height 0.3s ease;
+    }
+
+    .tree-node:not(.open) .tree-children {
+      display: none;
+    }
+
+    .tree-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      margin-bottom: 2px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .tree-item i {
+      width: 16px;
+      height: 16px;
+    }
+
+    .tree-item:hover {
+      background: var(--sidebar-hover-bg);
+      color: var(--text-sidebar-active);
+    }
+
+    .tree-item.active {
+      background: var(--sidebar-active-bg);
+      color: var(--text-sidebar-active);
+      font-weight: 500;
+    }
+
+    .sidebar-theme-selector {
+      padding: 20px;
+      border-top: 1px solid var(--border-color);
+      background: rgba(0,0,0,0.05);
+    }
+
+    .sidebar-theme-selector label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .sidebar-theme-selector select {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-main);
+      outline: none;
+      font-size: 0.9rem;
+    }
+
+    /* Main Content Styling */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .main-header {
+      padding: 20px 32px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background var(--transition-speed), border-color var(--transition-speed);
+    }
+
+    .main-header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .content-body {
+      flex: 1;
+      padding: 32px;
+      overflow-y: auto;
+    }
+
+    /* Content Views */
+    .content-view {
+      display: none;
+    }
+
+    .content-view.active {
+      display: block;
+    }
+
+    /* Cards & Grid styling */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: 24px;
+      transition: background var(--transition-speed), border-color var(--transition-speed), transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* 1. Dashboard Grid */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .stat-card {
+      grid-column: span 3;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    @media (max-width: 1200px) {
+      .stat-card {
+        grid-column: span 6;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .stat-card {
+        grid-column: span 12;
+      }
+      .chart-card.span-8, .activities-card.span-4 {
+        grid-column: span 12;
+      }
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-icon i {
+      width: 24px;
+      height: 24px;
+    }
+
+    .card-icon.blue { background: rgba(37, 99, 235, 0.1); color: #2563eb; }
+    .card-icon.green { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+    .card-icon.purple { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
+    .card-icon.orange { background: rgba(249, 115, 22, 0.1); color: #f97316; }
+
+    .stat-info h3 {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .stat-change {
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+      font-weight: 600;
+    }
+
+    .stat-change.positive { color: #22c55e; }
+    .stat-change.negative { color: #ef4444; }
+    .stat-change i { width: 12px; height: 12px; }
+
+    .span-8 { grid-column: span 8; }
+    .span-4 { grid-column: span 4; }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .card-header h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    /* Mock Chart graphics */
+    .mock-chart {
+      display: flex;
+      flex-direction: column;
+      height: 200px;
+      justify-content: space-between;
+    }
+
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      height: 170px;
+      padding: 0 10px;
+    }
+
+    .chart-bar {
+      width: 8%;
+      height: var(--height);
+      background: var(--primary-light);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      transition: height 0.5s ease, background 0.3s;
+    }
+
+    .chart-bar.active, .chart-bar:hover {
+      background: var(--primary);
+    }
+
+    .chart-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 0 10px;
+    }
+
+    /* Activity list */
+    .activity-list {
+      list-style: none;
+    }
+
+    .activity-list li {
+      display: flex;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .activity-list li:last-child {
+      border-bottom: none;
+    }
+
+    .activity-bullet {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .activity-bullet.green { background: #22c55e; }
+    .activity-bullet.blue { background: #2563eb; }
+    .activity-bullet.orange { background: #f97316; }
+
+    .activity-text {
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+
+    .activity-time {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* 2. List View (Table) */
+    .table-card {
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .table-toolbar {
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-box i {
+      position: absolute;
+      left: 12px;
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+    }
+
+    .search-box input {
+      padding: 8px 12px 8px 36px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-app);
+      color: var(--text-main);
+      outline: none;
+      font-size: 0.9rem;
+      width: 260px;
+      transition: border-color var(--transition-speed);
+    }
+
+    .search-box input:focus {
+      border-color: var(--primary);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .data-table th, .data-table td {
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .data-table th {
+      background: var(--primary-light);
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .data-table tbody tr:hover {
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .font-semibold {
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 50px;
+    }
+
+    .badge-success { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+    .badge-warning { background: rgba(234, 179, 8, 0.1); color: #eab308; }
+    .badge-danger { background: rgba(239, 68, 68, 0.1); color: #ef4444; }
+
+    /* 3. Gallery View */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .gallery-card {
+      padding: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gallery-image {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .gallery-category {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 4px 8px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      backdrop-filter: blur(4px);
+    }
+
+    .gallery-info {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .gallery-info h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .gallery-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+
+    .gallery-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
+      padding-top: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* 4. Calendar View */
+    .calendar-card {
+      padding: 24px;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .calendar-nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .calendar-nav h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+    }
+
+    .calendar-day-header {
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 8px 0;
+      color: var(--text-muted);
+    }
+
+    .calendar-day-header.sun { color: #ef4444; }
+    .calendar-day-header.sat { color: var(--primary); }
+
+    .calendar-day {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      min-height: 90px;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      background: var(--bg-card);
+      font-size: 0.85rem;
+      position: relative;
+    }
+
+    .calendar-day.other-month {
+      opacity: 0.35;
+    }
+
+    .calendar-day.sun > span { color: #ef4444; }
+    .calendar-day.sat > span { color: var(--primary); }
+
+    .active-today {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .active-today > span {
+      font-weight: bold;
+    }
+
+    .calendar-event {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-weight: 500;
+    }
+
+    .event-blue { background: rgba(37, 99, 235, 0.1); color: #2563eb; }
+    .event-green { background: rgba(34, 197, 94, 0.1); color: #22c55e; }
+    .event-orange { background: rgba(249, 115, 22, 0.1); color: #f97316; }
+    .event-purple { background: rgba(168, 85, 247, 0.1); color: #a855f7; }
+
+    /* Buttons & UI Controls */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 16px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+      outline: none;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background: var(--primary-light);
+    }
+
+    .btn-outline.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .btn-sm {
+      padding: 4px 10px;
+      font-size: 0.8rem;
+    }
+
+    .btn-xs {
+      padding: 2px 6px;
+      font-size: 0.75rem;
+    }
+
+    .btn-icon {
+      padding: 6px;
+      border-radius: 50%;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+    }
+
+    .btn-icon:hover {
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+
+    .btn-icon i {
+      width: 16px;
+      height: 16px;
+    }
+
+    .btn-icon-text {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .btn-icon-text:hover {
+      color: var(--primary);
+    }
+
+    .btn-icon-text i {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Prompt Panel Styling */
+    .prompt-panel {
+      position: absolute;
+      right: -420px;
+      top: 0;
+      width: 400px;
+      height: 100%;
+      background: var(--bg-card);
+      border-left: 1px solid var(--border-color);
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      transition: right 0.3s ease;
+      z-index: 100;
+    }
+
+    .prompt-panel.open {
+      right: 0;
+    }
+
+    .prompt-panel-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .prompt-panel-header h2 {
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+    }
+
+    .prompt-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .prompt-panel-content {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .prompt-field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .prompt-field-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .label-with-action {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .current-theme-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .code-container {
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: var(--bg-app);
+      padding: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #prompt-textarea {
+      width: 100%;
+      height: 120px;
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      resize: none;
+      outline: none;
+    }
+
+    .code-container pre {
+      margin: 0;
+      overflow-x: auto;
+    }
+
+    .code-container code {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-main);
+    }
+
+    /* Guide Box in Panel */
+    .guide-box {
+      border: 1px dashed var(--primary);
+      background: var(--primary-light);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-size: 0.8rem;
+      line-height: 1.5;
+      color: var(--text-main);
+    }
+
+    .guide-box h3 {
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .guide-box ol {
+      padding-left: 16px;
+      margin-top: 4px;
+    }
+
+    .guide-box code {
+      font-family: var(--font-mono);
+      background: rgba(0,0,0,0.05);
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-size: 0.75rem;
+    }
+
+    /* Toast Message */
+    .toast-message {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #333333;
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .toast-message.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body data-theme="clean-corporate">
+
+  <div class="app-container">
+    <!-- 사이드바 (좌측 메뉴) -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i data-lucide="layers" class="logo-icon"></i>
+          <span>ThemeCraft OS</span>
+        </div>
+      </div>
+      
+      <nav class="sidebar-nav">
+        <ul class="tree-menu">
+          <!-- 기본 화면 폴더 -->
+          <li class="tree-node folder open" id="folder-basic">
+            <div class="tree-node-title" onclick="toggleFolder('folder-basic')">
+              <i data-lucide="chevron-down" class="chevron-icon"></i>
+              <i data-lucide="folder" class="folder-icon"></i>
+              <span>기본 화면</span>
+            </div>
+            <ul class="tree-children">
+              <li class="tree-item active" data-view="dashboard" onclick="selectView('dashboard', this)">
+                <i data-lucide="layout-dashboard"></i>
+                <span>초기화면 (대시보드)</span>
+              </li>
+            </ul>
+          </li>
+
+          <!-- 상세 화면 폴더 -->
+          <li class="tree-node folder open" id="folder-detail">
+            <div class="tree-node-title" onclick="toggleFolder('folder-detail')">
+              <i data-lucide="chevron-down" class="chevron-icon"></i>
+              <i data-lucide="folder" class="folder-icon"></i>
+              <span>상세 화면</span>
+            </div>
+            <ul class="tree-children">
+              <li class="tree-item" data-view="list" onclick="selectView('list', this)">
+                <i data-lucide="list"></i>
+                <span>목록형</span>
+              </li>
+              <li class="tree-item" data-view="gallery" onclick="selectView('gallery', this)">
+                <i data-lucide="image"></i>
+                <span>사진형</span>
+              </li>
+              <li class="tree-item" data-view="calendar" onclick="selectView('calendar', this)">
+                <i data-lucide="calendar"></i>
+                <span>달력형</span>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      
+      <!-- 테마 선택 컨트롤 (사이드바 하단 위치) -->
+      <div class="sidebar-theme-selector">
+        <label for="theme-select-input">
+          <i data-lucide="palette"></i> 스킨 선택 (20 Themes)
+        </label>
+        <select id="theme-select-input" onchange="changeTheme(this.value)">
+          <optgroup label="Classic Themes (1~10)">
+            <option value="clean-corporate">1. Clean Corporate (기본)</option>
+            <option value="neo-cyberpunk">2. Neo Cyberpunk</option>
+            <option value="minimalist-nordic">3. Minimalist Nordic</option>
+            <option value="glassmorphism">4. Glassmorphism</option>
+            <option value="retro-terminal">5. Retro Terminal</option>
+            <option value="forest-moss">6. Forest & Moss</option>
+            <option value="royal-dark-gold">7. Royal Dark & Gold</option>
+            <option value="pastel-candy">8. Pastel Candy</option>
+            <option value="sunset-orange">9. Sunset Orange</option>
+            <option value="ocean-breeze">10. Ocean Breeze</option>
+          </optgroup>
+          <optgroup label="Alternative Designs (11~20)">
+            <option value="dracula-orchid">11. Dracula & Orchid</option>
+            <option value="vintage-sepia">12. Vintage Sepia</option>
+            <option value="cyber-lime">13. Cyber Lime & Slate</option>
+            <option value="swiss-design">14. Swiss Design Grid</option>
+            <option value="desert-clay">15. Desert Clay</option>
+            <option value="midnight-aurora">16. Midnight Aurora</option>
+            <option value="soft-lavender">17. Soft Lavender</option>
+            <option value="high-contrast">18. High Contrast (고대비)</option>
+            <option value="neo-brutalism">19. Neo-Brutalism</option>
+            <option value="rose-gold">20. Rose Gold & Luxury</option>
+          </optgroup>
+        </select>
+      </div>
+    </aside>
+
+    <!-- 메인 콘텐츠 영역 -->
+    <main class="main-content">
+      <!-- 상단 헤더 -->
+      <header class="main-header">
+        <div class="header-left">
+          <h1 id="current-view-title">초기화면 (대시보드)</h1>
+        </div>
+        <div class="header-right">
+          <button class="btn btn-primary" onclick="togglePromptPanel()">
+            <i data-lucide="terminal"></i> Prompt Generator
+          </button>
+        </div>
+      </header>
+
+      <!-- 콘텐츠 컨테이너 -->
+      <div class="content-body">
+        
+        <!-- 1. 초기화면 (대시보드) -->
+        <section id="view-dashboard" class="content-view active">
+          <div class="dashboard-grid">
+            <!-- 요약 카드 1 -->
+            <div class="card stat-card">
+              <div class="card-icon blue"><i data-lucide="users"></i></div>
+              <div class="stat-info">
+                <h3>누적 사용자</h3>
+                <p class="stat-value">12,482명</p>
+                <span class="stat-change positive"><i data-lucide="trending-up"></i> +12.3%</span>
+              </div>
+            </div>
+            <!-- 요약 카드 2 -->
+            <div class="card stat-card">
+              <div class="card-icon green"><i data-lucide="shopping-bag"></i></div>
+              <div class="stat-info">
+                <h3>오늘의 매출</h3>
+                <p class="stat-value">₩4,820,000</p>
+                <span class="stat-change positive"><i data-lucide="trending-up"></i> +8.4%</span>
+              </div>
+            </div>
+            <!-- 요약 카드 3 -->
+            <div class="card stat-card">
+              <div class="card-icon purple"><i data-lucide="bar-chart-2"></i></div>
+              <div class="stat-info">
+                <h3>전환율</h3>
+                <p class="stat-value">3.42%</p>
+                <span class="stat-change negative"><i data-lucide="trending-down"></i> -0.5%</span>
+              </div>
+            </div>
+            <!-- 요약 카드 4 -->
+            <div class="card stat-card">
+              <div class="card-icon orange"><i data-lucide="clock"></i></div>
+              <div class="stat-info">
+                <h3>평균 체류 시간</h3>
+                <p class="stat-value">4분 32초</p>
+                <span class="stat-change positive"><i data-lucide="trending-up"></i> +1.2m</span>
+              </div>
+            </div>
+
+            <!-- 메인 차트/현황 영역 -->
+            <div class="card chart-card span-8">
+              <div class="card-header">
+                <h2>실시간 트래픽 추이</h2>
+                <div class="card-actions">
+                  <button class="btn btn-sm btn-outline active">주간</button>
+                  <button class="btn btn-sm btn-outline">월간</button>
+                </div>
+              </div>
+              <div class="chart-container">
+                <!-- 가상 차트 그래픽 -->
+                <div class="mock-chart">
+                  <div class="chart-bars">
+                    <div class="chart-bar" style="--height: 40%"></div>
+                    <div class="chart-bar" style="--height: 60%"></div>
+                    <div class="chart-bar" style="--height: 45%"></div>
+                    <div class="chart-bar" style="--height: 80%"></div>
+                    <div class="chart-bar" style="--height: 95%"></div>
+                    <div class="chart-bar active" style="--height: 70%"></div>
+                    <div class="chart-bar" style="--height: 85%"></div>
+                  </div>
+                  <div class="chart-labels">
+                    <span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span><span>일</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 사이드 알림/업무 영역 -->
+            <div class="card activities-card span-4">
+              <div class="card-header">
+                <h2>최근 활동</h2>
+              </div>
+              <ul class="activity-list">
+                <li>
+                  <div class="activity-bullet green"></div>
+                  <div class="activity-detail">
+                    <p class="activity-text">새로운 가입자가 등록되었습니다.</p>
+                    <span class="activity-time">5분 전</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="activity-bullet blue"></div>
+                  <div class="activity-detail">
+                    <p class="activity-text">결제 시스템 점검이 완료되었습니다.</p>
+                    <span class="activity-time">1시간 전</span>
+                  </div>
+                </li>
+                <li>
+                  <div class="activity-bullet orange"></div>
+                  <div class="activity-detail">
+                    <p class="activity-text">서버 트래픽 일시적 급증 감지</p>
+                    <span class="activity-time">3시간 전</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. 목록형 -->
+        <section id="view-list" class="content-view">
+          <div class="card table-card">
+            <div class="table-toolbar">
+              <div class="search-box">
+                <i data-lucide="search"></i>
+                <input type="text" placeholder="이름, 이메일 검색...">
+              </div>
+              <div class="toolbar-actions">
+                <button class="btn btn-outline"><i data-lucide="filter"></i> 필터</button>
+                <button class="btn btn-primary"><i data-lucide="plus"></i> 멤버 등록</button>
+              </div>
+            </div>
+            
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th><input type="checkbox"></th>
+                    <th>멤버명</th>
+                    <th>이메일</th>
+                    <th>상태</th>
+                    <th>가입일</th>
+                    <th>역할</th>
+                    <th>관리</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td class="font-semibold">김도현</td>
+                    <td>dohyun@example.com</td>
+                    <td><span class="badge badge-success">활성</span></td>
+                    <td>2026. 05. 14</td>
+                    <td>Administrator</td>
+                    <td><button class="btn btn-icon"><i data-lucide="more-horizontal"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td class="font-semibold">이지아</td>
+                    <td>jia@example.com</td>
+                    <td><span class="badge badge-success">활성</span></td>
+                    <td>2026. 06. 02</td>
+                    <td>Editor</td>
+                    <td><button class="btn btn-icon"><i data-lucide="more-horizontal"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td class="font-semibold">박민수</td>
+                    <td>minsu@example.com</td>
+                    <td><span class="badge badge-warning">대기</span></td>
+                    <td>2026. 07. 01</td>
+                    <td>Subscriber</td>
+                    <td><button class="btn btn-icon"><i data-lucide="more-horizontal"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td class="font-semibold">최서연</td>
+                    <td>seoyeon@example.com</td>
+                    <td><span class="badge badge-danger">정지</span></td>
+                    <td>2026. 03. 28</td>
+                    <td>Editor</td>
+                    <td><button class="btn btn-icon"><i data-lucide="more-horizontal"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. 사진형 (갤러리/카드형) -->
+        <section id="view-gallery" class="content-view">
+          <div class="gallery-grid">
+            <!-- 갤러리 카드 1 -->
+            <div class="card gallery-card">
+              <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?q=80&w=600&auto=format&fit=crop');">
+                <span class="gallery-category">Design</span>
+              </div>
+              <div class="gallery-info">
+                <h3>추상적인 오로라 그라데이션</h3>
+                <p>현대적인 UI 디자인에서 자주 쓰이는 유려한 색감의 조화입니다.</p>
+                <div class="gallery-footer">
+                  <span class="date">2026-07-07</span>
+                  <button class="btn btn-icon-text"><i data-lucide="heart"></i> 124</button>
+                </div>
+              </div>
+            </div>
+            <!-- 갤러리 카드 2 -->
+            <div class="card gallery-card">
+              <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop');">
+                <span class="gallery-category">Minimal</span>
+              </div>
+              <div class="gallery-info">
+                <h3>3D 기하학적 셰이프</h3>
+                <p>공간감을 자아내는 미니멀리즘 성향의 입체 조형물 렌더링.</p>
+                <div class="gallery-footer">
+                  <span class="date">2026-07-06</span>
+                  <button class="btn btn-icon-text"><i data-lucide="heart"></i> 98</button>
+                </div>
+              </div>
+            </div>
+            <!-- 갤러리 카드 3 -->
+            <div class="card gallery-card">
+              <div class="gallery-image" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=600&auto=format&fit=crop');">
+                <span class="gallery-category">Nature</span>
+              </div>
+              <div class="gallery-info">
+                <h3>평화로운 에메랄드 해변</h3>
+                <p>시원하고 청명한 블루 컬러 매치를 시도할 때 좋은 레퍼런스.</p>
+                <div class="gallery-footer">
+                  <span class="date">2026-07-05</span>
+                  <button class="btn btn-icon-text"><i data-lucide="heart"></i> 156</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. 달력형 -->
+        <section id="view-calendar" class="content-view">
+          <div class="card calendar-card">
+            <div class="calendar-header">
+              <div class="calendar-nav">
+                <button class="btn btn-icon"><i data-lucide="chevron-left"></i></button>
+                <h2>2026년 7월</h2>
+                <button class="btn btn-icon"><i data-lucide="chevron-right"></i></button>
+              </div>
+              <button class="btn btn-primary btn-sm"><i data-lucide="plus"></i> 일정 추가</button>
+            </div>
+            
+            <div class="calendar-grid">
+              <!-- 요일 헤더 -->
+              <div class="calendar-day-header sun">일</div>
+              <div class="calendar-day-header">월</div>
+              <div class="calendar-day-header">화</div>
+              <div class="calendar-day-header">수</div>
+              <div class="calendar-day-header">목</div>
+              <div class="calendar-day-header">금</div>
+              <div class="calendar-day-header sat">토</div>
+
+              <!-- 이전 달 날짜 -->
+              <div class="calendar-day other-month">28</div>
+              <div class="calendar-day other-month">29</div>
+              <div class="calendar-day other-month">30</div>
+              
+              <!-- 7월 날짜들 -->
+              <div class="calendar-day">1</div>
+              <div class="calendar-day">2</div>
+              <div class="calendar-day">
+                <span>3</span>
+                <div class="calendar-event event-blue">주간 미팅</div>
+              </div>
+              <div class="calendar-day">4</div>
+              <div class="calendar-day sun">5</div>
+              <div class="calendar-day">6</div>
+              <div class="calendar-day active-today">
+                <span>7</span>
+                <div class="calendar-event event-green">스킨 프로젝트 런칭</div>
+                <div class="calendar-event event-orange">정기 검수</div>
+              </div>
+              <div class="calendar-day">8</div>
+              <div class="calendar-day">9</div>
+              <div class="calendar-day">10</div>
+              <div class="calendar-day sat">11</div>
+              <div class="calendar-day sun">12</div>
+              <div class="calendar-day">13</div>
+              <div class="calendar-day">14</div>
+              <div class="calendar-day">
+                <span>15</span>
+                <div class="calendar-event event-purple">디자인 최종 마감</div>
+              </div>
+              <div class="calendar-day">16</div>
+              <div class="calendar-day">17</div>
+              <div class="calendar-day sat">18</div>
+              <div class="calendar-day sun">19</div>
+              <div class="calendar-day">20</div>
+              <div class="calendar-day">21</div>
+              <div class="calendar-day">22</div>
+              <div class="calendar-day">23</div>
+              <div class="calendar-day">24</div>
+              <div class="calendar-day sat">25</div>
+              <div class="calendar-day sun">26</div>
+              <div class="calendar-day">27</div>
+              <div class="calendar-day">28</div>
+              <div class="calendar-day">29</div>
+              <div class="calendar-day">30</div>
+              <div class="calendar-day">31</div>
+              <div class="calendar-day other-month">1</div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- 플로팅 프롬프트 & CSS 변수 제어 패널 -->
+    <div class="prompt-panel" id="prompt-panel">
+      <div class="prompt-panel-header">
+        <h2>
+          <i data-lucide="sparkles" class="prompt-icon"></i>
+          <span>Theme Prompt Generator</span>
+        </h2>
+        <button class="btn btn-icon close-btn" onclick="togglePromptPanel()">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+      
+      <div class="prompt-panel-content">
+        <div class="prompt-field-group">
+          <label>현재 적용된 테마</label>
+          <div class="current-theme-name" id="selected-theme-name-display">Clean Corporate</div>
+        </div>
+
+        <div class="prompt-field-group">
+          <div class="label-with-action">
+            <label>AI 프롬프트 (다른 프로젝트 적용용)</label>
+            <button class="btn btn-xs btn-outline-primary" onclick="copyPromptText()">
+              <i data-lucide="copy" class="btn-icon-xs"></i> 복사하기
+            </button>
+          </div>
+          <div class="code-container">
+            <textarea id="prompt-textarea" readonly></textarea>
+          </div>
+        </div>
+
+        <div class="prompt-field-group">
+          <div class="label-with-action">
+            <label>CSS 테마 변수 (직접 적용용)</label>
+            <button class="btn btn-xs btn-outline-primary" onclick="copyCSSText()">
+              <i data-lucide="copy" class="btn-icon-xs"></i> 복사하기
+            </button>
+          </div>
+          <div class="code-container">
+            <pre><code id="css-variables-code"></code></pre>
+          </div>
+        </div>
+
+        <!-- Antigravity 2.0 커스터마이징 가이드 -->
+        <div class="guide-box">
+          <h3><i data-lucide="settings-2" style="width:16px;height:16px;"></i> Antigravity 2.0 적용법</h3>
+          <p>복사한 프롬프트 및 변수를 Antigravity 2.0에 등록하여 지속 사용하려면 아래 두 방법 중 선택하세요.</p>
+          <ol>
+            <li><strong>Rule(규칙)로 상시 지정:</strong><br>
+              프로젝트 루트에 <code>.agents/AGENTS.md</code>를 생성하거나, PC 전역 설정인 <code>C:\Users\redof\.gemini\config\AGENTS.md</code> 파일 끝에 아래 양식으로 위 프롬프트를 추가합니다.<br>
+              <code style="display:block;margin:4px 0;padding:4px;background:rgba(0,0,0,0.03);font-size:0.7rem;white-space:pre;"># CSS Guidelines&#13;[복사한 AI 프롬프트 삽입]</code>
+            </li>
+            <li><strong>Skill(스킬)로 개별 지정:</strong><br>
+              프로젝트 내 <code>.agents/skills/skin-custom/SKILL.md</code> 경로로 새 폴더 및 마크다운을 만듭니다. 앞부분에 아래 메타데이터(Frontmatter)를 지정하고 본문에 코드를 삽입하세요.<br>
+              <code style="display:block;margin:4px 0;padding:4px;background:rgba(0,0,0,0.03);font-size:0.7rem;white-space:pre;">---&#13;name: design-skin&#13;description: CSS 테마 디자인 스킨 가이드&#13;---&#13;# CSS Skin Variables&#13;[복사한 CSS 테마 변수 삽입]</code>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-message" id="toast">복사 완료!</div>
+
+  <script>
+    // 20 Themes Data (Prompts and CSS Variable definitions)
+    const themesData = {
+      // 1 ~ 10 Themes (기존 테마)
+      "clean-corporate": {
+        name: "1. Clean Corporate (기본)",
+        prompt: `Create a clean, highly professional corporate CSS skin for a web application. Use a trust-inspiring color scheme:\n- Background: Very light grayish-blue (#f4f6f9)\n- Sidebar: Deep slate navy (#0f172a)\n- Card backgrounds: Crisp white (#ffffff)\n- Primary Accent: Royal blue (#2563eb)\n- Secondary Elements: Warm amber (#f59e0b) for badges and highlights.\n- Text: Slate gray (#1e293b) for headings, muted gray (#64748b) for body text.\n- Shadows: Subtle, elegant box-shadows to signify depth.\n- Border radius: Medium values (6px - 16px) for a modern, slightly rounded but sharp aesthetic.`,
+        css: `:root {\n  --bg-app: #f4f6f9;\n  --bg-sidebar: #0f172a;\n  --bg-card: #ffffff;\n  --text-main: #1e293b;\n  --text-muted: #64748b;\n  --text-sidebar: #94a3b8;\n  --text-sidebar-active: #ffffff;\n  --sidebar-hover-bg: #1e293b;\n  --sidebar-active-bg: #2563eb;\n  --primary: #2563eb;\n  --primary-hover: #1d4ed8;\n  --primary-light: #eff6ff;\n  --accent: #f59e0b;\n  --border-color: #e2e8f0;\n  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);\n  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);\n  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);\n  --radius-sm: 6px;\n  --radius-md: 10px;\n  --radius-lg: 16px;\n}`
+      },
+      "neo-cyberpunk": {
+        name: "2. Neo Cyberpunk",
+        prompt: `Create a futuristic, dark Neo Cyberpunk CSS skin. Colors should be highly saturated and neon:\n- Background: Very dark violet-black (#0a0512)\n- Sidebar: Deep black with a purple undertone (#06010b)\n- Card backgrounds: Dark purple-grey (#130a24)\n- Primary Accent: Neon pink (#ff007f) with intense glowing effects.\n- Secondary Accent: Neon cyan/aqua (#00ffff)\n- Text: Pale lavender (#e2d9f3) and neon green (#39ff14) for highlights.\n- Shadows: Vibrant glowing dropshadows (e.g., box-shadow: 0 0 15px rgba(255, 0, 127, 0.4)).\n- Borders: Cybernetic thin borders in deep purple (#3b1e6d).\n- Border radius: Sharp corners (0px to 4px) for a high-tech vibe.`,
+        css: `:root {\n  --bg-app: #0a0512;\n  --bg-sidebar: #06010b;\n  --bg-card: #130a24;\n  --text-main: #e2d9f3;\n  --text-muted: #8b7ca6;\n  --text-sidebar: #796699;\n  --text-sidebar-active: #39ff14;\n  --sidebar-hover-bg: #21123a;\n  --sidebar-active-bg: #ff007f;\n  --primary: #ff007f;\n  --primary-hover: #e00070;\n  --primary-light: rgba(255, 0, 127, 0.15);\n  --accent: #00ffff;\n  --border-color: #3b1e6d;\n  --shadow-sm: 0 0 5px rgba(255, 0, 127, 0.3);\n  --shadow-md: 0 0 15px rgba(255, 0, 127, 0.4);\n  --shadow-lg: 0 0 25px rgba(255, 0, 127, 0.5);\n  --radius-sm: 2px;\n  --radius-md: 4px;\n  --radius-lg: 8px;\n}`
+      },
+      "minimalist-nordic": {
+        name: "3. Minimalist Nordic",
+        prompt: `Create a clean, bright, and extremely minimalist Nordic-style CSS skin. Focus on warm whites, natural tones, and space:\n- Background: Soft off-white (#fafafa)\n- Sidebar: Pale ash grey (#eceff1)\n- Card backgrounds: Pure white (#ffffff)\n- Primary Accent: Muted slate grey (#4a5568)\n- Secondary Accent: Soft clay orange (#dd6b20)\n- Text: Charcoal black (#2d3748) and cool grey (#718096) for subtext.\n- Shadows: Almost invisible flat shadow style.\n- Border radius: Gentle curves (4px - 10px).\n- Overall aesthetic: Clean lines, minimal clutter, large padding.`,
+        css: `:root {\n  --bg-app: #fafafa;\n  --bg-sidebar: #eceff1;\n  --bg-card: #ffffff;\n  --text-main: #2d3748;\n  --text-muted: #718096;\n  --text-sidebar: #4a5568;\n  --text-sidebar-active: #1a202c;\n  --sidebar-hover-bg: #e2e8f0;\n  --sidebar-active-bg: #cbd5e0;\n  --primary: #4a5568;\n  --primary-hover: #2d3748;\n  --primary-light: #edf2f7;\n  --accent: #dd6b20;\n  --border-color: #e2e8f0;\n  --shadow-sm: 0 1px 1px rgba(0,0,0,0.02);\n  --shadow-md: 0 2px 4px rgba(0,0,0,0.04);\n  --shadow-lg: 0 4px 8px rgba(0,0,0,0.06);\n  --radius-sm: 4px;\n  --radius-md: 6px;\n  --radius-lg: 10px;\n}`
+      },
+      "glassmorphism": {
+        name: "4. Glassmorphism",
+        prompt: `Create a modern Glassmorphism/Frosted Glass CSS theme:\n- Background: Dynamic pastel gradient (linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%))\n- Sidebar: Translucent white with backdrop-blur (rgba(255, 255, 255, 0.35))\n- Card backgrounds: Frosted glass panel style (rgba(255, 255, 255, 0.45)) with backdrop-filter: blur(12px)\n- Primary Accent: Crystal blue (#0984e3)\n- Text: Deep ocean navy (#2c3e50)\n- Shadows: Very soft and diffused dropshadows\n- Border radius: Generous, organic rounded corners (8px - 24px)\n- Border: Thin semi-transparent white border (rgba(255,255,255,0.3)) to enhance glass effect.`,
+        css: `:root {\n  --bg-app: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);\n  --bg-sidebar: rgba(255, 255, 255, 0.35);\n  --bg-card: rgba(255, 255, 255, 0.45);\n  --text-main: #2c3e50;\n  --text-muted: #576574;\n  --text-sidebar: #2c3e50;\n  --text-sidebar-active: #0984e3;\n  --sidebar-hover-bg: rgba(255, 255, 255, 0.5);\n  --sidebar-active-bg: rgba(255, 255, 255, 0.7);\n  --primary: #0984e3;\n  --primary-hover: #74b9ff;\n  --primary-light: rgba(9, 132, 227, 0.1);\n  --accent: #e17055;\n  --border-color: rgba(255, 255, 255, 0.3);\n  --shadow-sm: 0 2px 8px rgba(31, 38, 135, 0.05);\n  --shadow-md: 0 8px 32px 0 rgba(31, 38, 135, 0.1);\n  --shadow-lg: 0 8px 32px 0 rgba(31, 38, 135, 0.15);\n  --radius-sm: 8px;\n  --radius-md: 16px;\n  --radius-lg: 24px;\n}`
+      },
+      "retro-terminal": {
+        name: "5. Retro Terminal",
+        prompt: `Create a 1980s CLI terminal style CSS theme. Monospaced font is critical:\n- Background: Absolute black (#000000)\n- Sidebar: Dark terminal panel (#050505)\n- Card backgrounds: Solid dark console block (#080808)\n- Primary Accent: Classic phosphorescent bright green (#33ff33)\n- Text: Bright green for all headings and interactive items, dim green (#1e9d1e) for subtext.\n- Shadows: None (flat layout) or slight glow.\n- Borders: Solid green borders (#33ff33) around components.\n- Border radius: Zero curves (0px) for an authentic vintage monitor feel.`,
+        css: `:root {\n  --bg-app: #000000;\n  --bg-sidebar: #050505;\n  --bg-card: #080808;\n  --text-main: #33ff33;\n  --text-muted: #1e9d1e;\n  --text-sidebar: #1e9d1e;\n  --text-sidebar-active: #33ff33;\n  --sidebar-hover-bg: #111111;\n  --sidebar-active-bg: #222222;\n  --primary: #33ff33;\n  --primary-hover: #1e9d1e;\n  --primary-light: rgba(51, 255, 51, 0.1);\n  --accent: #ffb300;\n  --border-color: #33ff33;\n  --shadow-sm: none;\n  --shadow-md: 0 0 10px rgba(51, 255, 51, 0.2);\n  --shadow-lg: 0 0 20px rgba(51, 255, 51, 0.3);\n  --radius-sm: 0px;\n  --radius-md: 0px;\n  --radius-lg: 0px;\n}`
+      },
+      "forest-moss": {
+        name: "6. Forest & Moss",
+        prompt: `Create an earthy, organic nature-inspired Forest & Moss theme:\n- Background: Pale stone grey-green (#f2f4f0)\n- Sidebar: Rich pine/dark forest green (#2b3a30)\n- Card backgrounds: Clean white (#ffffff)\n- Primary Accent: Deep sage/moss green (#4f6f52)\n- Secondary Accent: Terracotta clay (#c08261)\n- Text: Charcoal slate with a hint of forest (#1c2820)\n- Shadows: Soft organic shadows\n- Border radius: Highly rounded, natural shapes (6px - 20px)`,
+        css: `:root {\n  --bg-app: #f2f4f0;\n  --bg-sidebar: #2b3a30;\n  --bg-card: #ffffff;\n  --text-main: #1c2820;\n  --text-muted: #5e6f64;\n  --text-sidebar: #a3b2a4;\n  --text-sidebar-active: #ffffff;\n  --sidebar-hover-bg: #354a3e;\n  --sidebar-active-bg: #4f6f52;\n  --primary: #4f6f52;\n  --primary-hover: #3a533d;\n  --primary-light: #ecefe6;\n  --accent: #c08261;\n  --border-color: #dbe1d9;\n  --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);\n  --shadow-md: 0 4px 6px rgba(0,0,0,0.05);\n  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05);\n  --radius-sm: 6px;\n  --radius-md: 12px;\n  --radius-lg: 20px;\n}`
+      },
+      "royal-dark-gold": {
+        name: "7. Royal Dark & Gold",
+        prompt: `Create a luxurious, dark UI skin themed with Royal Navy, Dark Charcoal, and Gold accents:\n- Background: Luxury navy-charcoal (#0f141c)\n- Sidebar: Darkest midnight navy (#0a0d14)\n- Card backgrounds: Elegant dark slate (#161c26)\n- Primary Accent: Brushed gold (#dfb15b)\n- Text: Crisp off-white (#e2e8f0) with warm gold highlights.\n- Shadows: Heavy, deep shadows for a layered, premium feel.\n- Borders: Warm dark slate dividers (#2d3748).\n- Border radius: Classic corporate standard (4px - 12px).`,
+        css: `:root {\n  --bg-app: #0f141c;\n  --bg-sidebar: #0a0d14;\n  --bg-card: #161c26;\n  --text-main: #e2e8f0;\n  --text-muted: #718096;\n  --text-sidebar: #a0aec0;\n  --text-sidebar-active: #dfb15b;\n  --sidebar-hover-bg: #1c2432;\n  --sidebar-active-bg: #242f41;\n  --primary: #dfb15b;\n  --primary-hover: #cfa14b;\n  --primary-light: rgba(223, 177, 91, 0.1);\n  --accent: #e53e3e;\n  --border-color: #2d3748;\n  --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);\n  --shadow-md: 0 4px 10px rgba(0,0,0,0.4);\n  --shadow-lg: 0 10px 25px rgba(0,0,0,0.5);\n  --radius-sm: 4px;\n  --radius-md: 8px;\n  --radius-lg: 12px;\n}`
+      },
+      "pastel-candy": {
+        name: "8. Pastel Candy",
+        prompt: `Create a bright, playful, and friendly Pastel Candy CSS theme:\n- Background: Soft pinkish blush (#fff9fc)\n- Sidebar: Sweet milk pink (#ffeef8)\n- Card backgrounds: Pure white (#ffffff)\n- Primary Accent: Coral peach (#ff7675)\n- Secondary Accent: Sweet yellow (#fdcb6e)\n- Text: Deep violet-brown (#4a3e4d)\n- Shadows: Fluffy, soft-colored shadows\n- Border radius: Friendly, highly rounded corners (8px - 22px)`,
+        css: `:root {\n  --bg-app: #fff9fc;\n  --bg-sidebar: #ffeef8;\n  --bg-card: #ffffff;\n  --text-main: #4a3e4d;\n  --text-muted: #a38fa8;\n  --text-sidebar: #927599;\n  --text-sidebar-active: #ff6584;\n  --sidebar-hover-bg: #ffdbe9;\n  --sidebar-active-bg: #ffccd9;\n  --primary: #ff7675;\n  --primary-hover: #ff6584;\n  --primary-light: #fff2f2;\n  --accent: #fdcb6e;\n  --border-color: #ffdce9;\n  --shadow-sm: 0 2px 4px rgba(255, 118, 117, 0.05);\n  --shadow-md: 0 6px 12px rgba(255, 118, 117, 0.08);\n  --shadow-lg: 0 12px 24px rgba(255, 118, 117, 0.12);\n  --radius-sm: 8px;\n  --radius-md: 14px;\n  --radius-lg: 22px;\n}`
+      },
+      "sunset-orange": {
+        name: "9. Sunset Orange",
+        prompt: `Create a warm Sunset Orange & Clay CSS theme:\n- Background: Soft warm peach-gray (#fdf5f2)\n- Sidebar: Deep evening espresso (#1e120f)\n- Card backgrounds: Pure white (#ffffff)\n- Primary Accent: Bright sunset orange (#ff5c35)\n- Secondary Accent: Ocean turquoise (#20b2aa)\n- Text: Warm charcoal (#33180f)\n- Shadows: Soft shadows with warm orange undertones\n- Border radius: Modern rounded design (6px - 18px)`,
+        css: `:root {\n  --bg-app: #fdf5f2;\n  --bg-sidebar: #1e120f;\n  --bg-card: #ffffff;\n  --text-main: #33180f;\n  --text-muted: #8c7670;\n  --text-sidebar: #c4b5b1;\n  --text-sidebar-active: #ff7a59;\n  --sidebar-hover-bg: #2d1c18;\n  --sidebar-active-bg: #ff7a59;\n  --primary: #ff5c35;\n  --primary-hover: #e04a25;\n  --primary-light: #fff0eb;\n  --accent: #20b2aa;\n  --border-color: #f7e6e1;\n  --shadow-sm: 0 1px 3px rgba(255, 92, 53, 0.05);\n  --shadow-md: 0 5px 12px rgba(255, 92, 53, 0.08);\n  --shadow-lg: 0 10px 20px rgba(255, 92, 53, 0.12);\n  --radius-sm: 6px;\n  --radius-md: 12px;\n  --radius-lg: 18px;\n}`
+      },
+      "ocean-breeze": {
+        name: "10. Ocean Breeze",
+        prompt: `Create a crisp and refreshing marine/Ocean Breeze CSS theme:\n- Background: Light sea salt blue (#f0f8ff)\n- Sidebar: Deep ocean navy (#0c2340)\n- Card backgrounds: Ice white (#ffffff)\n- Primary Accent: Deep teal (#008080)\n- Secondary Accent: Warm sand gold (#ff8c00)\n- Text: Deep marine navy (#0c2340)\n- Shadows: Soft cool blue shadows\n- Border radius: Rounded corners (5px - 15px)`,
+        css: `:root {\n  --bg-app: #f0f8ff;\n  --bg-sidebar: #0c2340;\n  --bg-card: #ffffff;\n  --text-main: #0c2340;\n  --text-muted: #506982;\n  --text-sidebar: #93a5b8;\n  --text-sidebar-active: #00ffff;\n  --sidebar-hover-bg: #13335c;\n  --sidebar-active-bg: #008080;\n  --primary: #008080;\n  --primary-hover: #006666;\n  --primary-light: #e0f2f2;\n  --accent: #ff8c00;\n  --border-color: #d2e4f0;\n  --shadow-sm: 0 1px 3px rgba(12, 35, 64, 0.05);\n  --shadow-md: 0 4px 10px rgba(12, 35, 64, 0.08);\n  --shadow-lg: 0 10px 20px rgba(12, 35, 64, 0.1);\n  --radius-sm: 5px;\n  --radius-md: 10px;\n  --radius-lg: 15px;\n}`
+      },
+      
+      // 11 ~ 20 Themes (신규 테마)
+      "dracula-orchid": {
+        name: "11. Dracula & Orchid (신규)",
+        prompt: `Create a gothic, high-quality Dracula dark mode skin:\n- Background: Deep slate-purple (#282a36)\n- Sidebar: Solid dark violet-black (#1e1f29)\n- Card backgrounds: Deep navy charcoal (#343746)\n- Primary Accent: Electric orchid pink (#ff79c6) and mystical lavender (#bd93f9)\n- Text: Luminous bone white (#f8f8f2) and code-themed bluish gray (#6272a4)\n- Borders: Thin dark-slate gray borders (#44475a)\n- Shadows: Heavy, mysterious dark overlays (#000000).`,
+        css: `:root {\n  --bg-app: #282a36;\n  --bg-sidebar: #1e1f29;\n  --bg-card: #343746;\n  --text-main: #f8f8f2;\n  --text-muted: #6272a4;\n  --text-sidebar: #6272a4;\n  --text-sidebar-active: #50fa7b;\n  --sidebar-hover-bg: #2d2f3b;\n  --sidebar-active-bg: #bd93f9;\n  --primary: #ff79c6;\n  --primary-hover: #ff92df;\n  --primary-light: rgba(189, 147, 249, 0.15);\n  --accent: #f1fa8c;\n  --border-color: #44475a;\n  --shadow-sm: 0 1px 3px rgba(0,0,0,0.2);\n  --shadow-md: 0 4px 8px rgba(0,0,0,0.3);\n  --shadow-lg: 0 8px 16px rgba(0,0,0,0.4);\n  --radius-sm: 4px;\n  --radius-md: 8px;\n  --radius-lg: 12px;\n}`
+      },
+      "vintage-sepia": {
+        name: "12. Vintage Sepia (신규)",
+        prompt: `Create a cozy, nostalgic bookish Vintage Sepia CSS theme:\n- Background: Warm papyrus cream (#f4ecd8)\n- Sidebar: Roast coffee-bean brown (#4a3c31)\n- Card backgrounds: Clean white-sand (#fdfaf2)\n- Primary Accent: Matte chocolate brown (#8d6e63)\n- Secondary Accent: Burnt reddish clay (#bf360c)\n- Text: Deep cocoa brown (#3E2723)\n- Shadows: Very soft, warm organic brown shadows\n- Border radius: Slightly rounded, classical margins.`,
+        css: `:root {\n  --bg-app: #f4ecd8;\n  --bg-sidebar: #4a3c31;\n  --bg-card: #fdfaf2;\n  --text-main: #3E2723;\n  --text-muted: #8D6E63;\n  --text-sidebar: #d7ccc8;\n  --text-sidebar-active: #f4ecd8;\n  --sidebar-hover-bg: #5d4a3c;\n  --sidebar-active-bg: #8d6e63;\n  --primary: #8d6e63;\n  --primary-hover: #6d4c41;\n  --primary-light: #efebe9;\n  --accent: #bf360c;\n  --border-color: #d7ccc8;\n  --shadow-sm: 0 1px 2px rgba(74,60,49,0.05);\n  --shadow-md: 0 3px 6px rgba(74,60,49,0.08);\n  --shadow-lg: 0 6px 12px rgba(74,60,49,0.1);\n  --radius-sm: 4px;\n  --radius-md: 8px;\n  --radius-lg: 14px;\n}`
+      },
+      "cyber-lime": {
+        name: "13. Cyber Lime & Slate (신규)",
+        prompt: `Create an ultra-modern tech-brand style Cyber Lime CSS theme:\n- Background: Modern dark slate (#0f172a)\n- Sidebar: Deep obsidian black (#020617)\n- Card backgrounds: Tech gray-slate (#1e293b)\n- Primary Accent: Highly energetic Cyber Lime Green (#ccff00)\n- Secondary Accent: Neon electric blue (#38bdf8)\n- Text: Crisp bluish white (#f1f5f9) and steel gray (#64748b)\n- Shadows: Dynamic neon drop shadows\n- Borders: Modern slate gray lines (#334155).`,
+        css: `:root {\n  --bg-app: #0f172a;\n  --bg-sidebar: #020617;\n  --bg-card: #1e293b;\n  --text-main: #f1f5f9;\n  --text-muted: #64748b;\n  --text-sidebar: #475569;\n  --text-sidebar-active: #ccff00;\n  --sidebar-hover-bg: #0f172a;\n  --sidebar-active-bg: #334155;\n  --primary: #ccff00;\n  --primary-hover: #b3e600;\n  --primary-light: rgba(204, 255, 0, 0.1);\n  --accent: #38bdf8;\n  --border-color: #334155;\n  --shadow-sm: 0 1px 2px rgba(0,0,0,0.1);\n  --shadow-md: 0 4px 6px rgba(0,0,0,0.15);\n  --shadow-lg: 0 10px 15px rgba(0,0,0,0.2);\n  --radius-sm: 4px;\n  --radius-md: 8px;\n  --radius-lg: 14px;\n}`
+      },
+      "swiss-design": {
+        name: "14. Swiss Design Grid (신규)",
+        prompt: `Create a bold, editorial high-contrast Swiss Design CSS skin:\n- Background: Bleached absolute white (#ffffff)\n- Sidebar: Heavy black block (#000000)\n- Card backgrounds: Flat white (#ffffff)\n- Primary Accent: Swiss flag red (#ff0000)\n- Text: Pitch black (#000000) for ultimate clarity\n- Borders: Thick 2px black borders (#000000) around ALL components\n- Shadows: None (completely flat grid layout)\n- Border radius: Hard 0px corners to enforce mathematical grids.`,
+        css: `:root {\n  --bg-app: #ffffff;\n  --bg-sidebar: #000000;\n  --bg-card: #ffffff;\n  --text-main: #000000;\n  --text-muted: #666666;\n  --text-sidebar: #999999;\n  --text-sidebar-active: #ffffff;\n  --sidebar-hover-bg: #222222;\n  --sidebar-active-bg: #ff0000;\n  --primary: #ff0000;\n  --primary-hover: #cc0000;\n  --primary-light: #ffe6e6;\n  --accent: #0000ff;\n  --border-color: #000000;\n  --shadow-sm: none;\n  --shadow-md: none;\n  --shadow-lg: none;\n  --radius-sm: 0px;\n  --radius-md: 0px;\n  --radius-lg: 0px;\n}`
+      },
+      "desert-clay": {
+        name: "15. Desert Clay (신규)",
+        prompt: `Create an warm Southwestern Desert Clay style CSS theme:\n- Background: Soft desert sand beige (#f9f5f0)\n- Sidebar: Deep terracotta clay brown (#4d2f21)\n- Card backgrounds: Crisp white (#ffffff)\n- Primary Accent: Baked earth clay orange (#c97e5d)\n- Secondary Accent: Warm golden sand (#d4a373)\n- Text: Dark brown bark (#3d2418) and warm dust (#8c7265)\n- Borders: Soft peach dust dividers (#eedcd4)\n- Shadows: Quiet, warm-toned overlays.`,
+        css: `:root {\n  --bg-app: #f9f5f0;\n  --bg-sidebar: #4d2f21;\n  --bg-card: #ffffff;\n  --text-main: #3d2418;\n  --text-muted: #8c7265;\n  --text-sidebar: #d9c5bd;\n  --text-sidebar-active: #ffb88c;\n  --sidebar-hover-bg: #5d3b2b;\n  --sidebar-active-bg: #c97e5d;\n  --primary: #c97e5d;\n  --primary-hover: #b06544;\n  --primary-light: #f7ede9;\n  --accent: #d4a373;\n  --border-color: #eedcd4;\n  --shadow-sm: 0 1px 3px rgba(77,47,33,0.05);\n  --shadow-md: 0 4px 8px rgba(77,47,33,0.08);\n  --shadow-lg: 0 8px 16px rgba(77,47,33,0.1);\n  --radius-sm: 6px;\n  --radius-md: 10px;\n  --radius-lg: 16px;\n}`
+      },
+      "midnight-aurora": {
+        name: "16. Midnight Aurora (신규)",
+        prompt: `Create a cosmic, deep Midnight Aurora CSS theme:\n- Background: Celestial dark blue (#030712)\n- Sidebar: Dark polar night indigo (#0b0f19)\n- Card backgrounds: Deep space slate (#111827)\n- Primary Accent: Luminous aurora teal (#14b8a6) and northern-light green (#10b981)\n- Secondary Accent: Cosmic sky blue (#3b82f6)\n- Shadows: Glowing teal and green auroral backdrops (e.g., box-shadow: 0 0 12px rgba(20, 184, 166, 0.25)).`,
+        css: `:root {\n  --bg-app: #030712;\n  --bg-sidebar: #0b0f19;\n  --bg-card: #111827;\n  --text-main: #f9fafb;\n  --text-muted: #6b7280;\n  --text-sidebar: #4b5563;\n  --text-sidebar-active: #10b981;\n  --sidebar-hover-bg: #1f2937;\n  --sidebar-active-bg: #14b8a6;\n  --primary: #14b8a6;\n  --primary-hover: #0d9488;\n  --primary-light: rgba(20, 184, 166, 0.15);\n  --accent: #3b82f6;\n  --border-color: #1f2937;\n  --shadow-sm: 0 0 4px rgba(20, 184, 166, 0.1);\n  --shadow-md: 0 0 12px rgba(20, 184, 166, 0.25);\n  --shadow-lg: 0 0 20px rgba(20, 184, 166, 0.4);\n  --radius-sm: 5px;\n  --radius-md: 10px;\n  --radius-lg: 18px;\n}`
+      },
+      "soft-lavender": {
+        name: "17. Soft Lavender (신규)",
+        prompt: `Create a calming, modern Soft Lavender & Lilac CSS skin:\n- Background: Pale lavender cream (#f5f3ff)\n- Sidebar: Deep royal indigo-violet (#312e81)\n- Card backgrounds: Pure white (#ffffff)\n- Primary Accent: Light violet-indigo (#6366f1)\n- Secondary Accent: Bright bubblegum pink (#ec4899)\n- Text: Deep midnight indigo (#1e1b4b)\n- Shadows: Soft, lavender-tinted shadows\n- Border radius: Highly rounded, friendly corners (8px - 20px).`,
+        css: `:root {\n  --bg-app: #f5f3ff;\n  --bg-sidebar: #312e81;\n  --bg-card: #ffffff;\n  --text-main: #1e1b4b;\n  --text-muted: #6366f1;\n  --text-sidebar: #c7d2fe;\n  --text-sidebar-active: #ffffff;\n  --sidebar-hover-bg: #3730a3;\n  --sidebar-active-bg: #4f46e5;\n  --primary: #6366f1;\n  --primary-hover: #4f46e5;\n  --primary-light: #e0e7ff;\n  --accent: #ec4899;\n  --border-color: #e0e7ff;\n  --shadow-sm: 0 1px 3px rgba(99,102,241,0.05);\n  --shadow-md: 0 4px 8px rgba(99,102,241,0.08);\n  --shadow-lg: 0 8px 16px rgba(99,102,241,0.12);\n  --radius-sm: 8px;\n  --radius-md: 14px;\n  --radius-lg: 20px;\n}`
+      },
+      "high-contrast": {
+        name: "18. High Contrast (고대비 - 신규)",
+        prompt: `Create a high-accessibility absolute High Contrast black and yellow theme:\n- Background: Solid absolute black (#000000)\n- Sidebar: Absolute black (#000000)\n- Card backgrounds: Absolute black (#000000)\n- Primary Accent: Highly visible warning yellow (#ffff00)\n- Text: Pure white (#ffffff) for body, electric cyan (#00ffff) for highlights\n- Borders: Clear solid white borders (#ffffff) around cards\n- Shadows: None (high accessibility flat style)\n- Border radius: Flat square edges (0px) to keep geometry simple.`,
+        css: `:root {\n  --bg-app: #000000;\n  --bg-sidebar: #000000;\n  --bg-card: #000000;\n  --text-main: #ffffff;\n  --text-muted: #ffff00;\n  --text-sidebar: #ffffff;\n  --text-sidebar-active: #ffff00;\n  --sidebar-hover-bg: #333333;\n  --sidebar-active-bg: #ffff00;\n  --primary: #ffff00;\n  --primary-hover: #cccc00;\n  --primary-light: rgba(255,255,0,0.15);\n  --accent: #00ffff;\n  --border-color: #ffffff;\n  --shadow-sm: none;\n  --shadow-md: none;\n  --shadow-lg: none;\n  --radius-sm: 0px;\n  --radius-md: 0px;\n  --radius-lg: 0px;\n}`
+      },
+      "neo-brutalism": {
+        name: "19. Neo-Brutalism (신규)",
+        prompt: `Create a raw, bold Neo-Brutalism web design style theme:\n- Background: Extremely saturated cartoon yellow (#fef08a)\n- Sidebar: Plain white paper block (#ffffff)\n- Card backgrounds: Crisp white (#ffffff)\n- Primary Accent: Saturated electric sky blue (#38bdf8)\n- Secondary Accent: Vibrant rose pink (#f43f5e)\n- Borders: Thick, comic-book style 2px solid black borders (#000000) on everything\n- Shadows: Completely flat hard offset black dropshadows (e.g., box-shadow: 4px 4px 0px #000000)\n- Border radius: Zero curves (0px) for a harsh, retro-printed magazine feel.`,
+        css: `:root {\n  --bg-app: #fef08a;\n  --bg-sidebar: #ffffff;\n  --bg-card: #ffffff;\n  --text-main: #000000;\n  --text-muted: #000000;\n  --text-sidebar: #000000;\n  --text-sidebar-active: #000000;\n  --sidebar-hover-bg: #e2e8f0;\n  --sidebar-active-bg: #38bdf8;\n  --primary: #38bdf8;\n  --primary-hover: #0ea5e9;\n  --primary-light: #e0f2fe;\n  --accent: #f43f5e;\n  --border-color: #000000;\n  --shadow-sm: 2px 2px 0px #000000;\n  --shadow-md: 4px 4px 0px #000000;\n  --shadow-lg: 8px 8px 0px #000000;\n  --radius-sm: 0px;\n  --radius-md: 0px;\n  --radius-lg: 0px;\n}`
+      },
+      "rose-gold": {
+        name: "20. Rose Gold & Luxury (신규)",
+        prompt: `Create a warm, highly luxurious Rose Gold & Charcoal theme:\n- Background: Shimmering blush pink-white (#FAF5F5)\n- Sidebar: Darkest warm rosewood/charcoal (#1F1B1B)\n- Card backgrounds: Crisp white (#ffffff)\n- Primary Accent: Soft metallic rose gold (#C78282)\n- Secondary Accent: Champagne gold (#E3B484)\n- Text: Deep chocolate-rose gray (#2A2424) and soft dust (#9F8282)\n- Shadows: Gentle, luxurious peach-tinted shadows\n- Border radius: Generous, soft rounded corners (6px - 18px).`,
+        css: `:root {\n  --bg-app: #FAF5F5;\n  --bg-sidebar: #1F1B1B;\n  --bg-card: #ffffff;\n  --text-main: #2A2424;\n  --text-muted: #9F8282;\n  --text-sidebar: #D1C4C4;\n  --text-sidebar-active: #E5A9A9;\n  --sidebar-hover-bg: #2B2525;\n  --sidebar-active-bg: #C78282;\n  --primary: #C78282;\n  --primary-hover: #B06B6B;\n  --primary-light: #FCEFEF;\n  --accent: #E3B484;\n  --border-color: #F0E1E1;\n  --shadow-sm: 0 1px 3px rgba(199,130,130,0.06);\n  --shadow-md: 0 4px 10px rgba(199,130,130,0.1);\n  --shadow-lg: 0 8px 20px rgba(199,130,130,0.15);\n  --radius-sm: 6px;\n  --radius-md: 12px;\n  --radius-lg: 18px;\n}`
+      }
+    };
+
+    // Toggle Sidebar Folders
+    function toggleFolder(folderId) {
+      const folder = document.getElementById(folderId);
+      if (folder) {
+        folder.classList.toggle('open');
+        setTimeout(() => {
+          lucide.createIcons();
+        }, 50);
+      }
+    }
+
+    // Switch between Main Content Views
+    function selectView(viewName, element) {
+      document.querySelectorAll('.tree-item').forEach(item => {
+        item.classList.remove('active');
+      });
+      element.classList.add('active');
+
+      document.querySelectorAll('.content-view').forEach(view => {
+        view.classList.remove('active');
+      });
+      const activeView = document.getElementById(`view-${viewName}`);
+      if (activeView) {
+        activeView.classList.add('active');
+      }
+
+      const titleDisplay = document.getElementById('current-view-title');
+      if (titleDisplay) {
+        const KoreaNames = {
+          'dashboard': '초기화면 (대시보드)',
+          'list': '상세 화면 > 목록형',
+          'gallery': '상세 화면 > 사진형',
+          'calendar': '상세 화면 > 달력형'
+        };
+        titleDisplay.textContent = KoreaNames[viewName] || viewName;
+      }
+    }
+
+    // Open & Close Prompt Generator Panel
+    function togglePromptPanel() {
+      const panel = document.getElementById('prompt-panel');
+      if (panel) {
+        panel.classList.toggle('open');
+      }
+    }
+
+    // Switch Theme and Update Displayed Prompt + Code
+    function changeTheme(themeValue) {
+      document.body.setAttribute('data-theme', themeValue);
+      
+      const themeInfo = themesData[themeValue];
+      if (!themeInfo) return;
+
+      document.getElementById('selected-theme-name-display').textContent = themeInfo.name;
+      document.getElementById('prompt-textarea').value = themeInfo.prompt;
+      document.getElementById('css-variables-code').textContent = themeInfo.css;
+
+      const selectEl = document.getElementById('theme-select-input');
+      if (selectEl && selectEl.value !== themeValue) {
+        selectEl.value = themeValue;
+      }
+      
+      lucide.createIcons();
+    }
+
+    // Toast notification helper
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      if (toast) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, 2000);
+      }
+    }
+
+    // Copy prompt text to clipboard
+    function copyPromptText() {
+      const textarea = document.getElementById('prompt-textarea');
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(textarea.value)
+        .then(() => {
+          showToast('프롬프트가 클립보드에 복사되었습니다!');
+        })
+        .catch(err => {
+          console.error('Copy failed:', err);
+          showToast('복사 실패. 브라우저 권한을 확인해주세요.');
+        });
+    }
+
+    // Copy CSS Variables code block to clipboard
+    function copyCSSText() {
+      const codeBlock = document.getElementById('css-variables-code');
+      navigator.clipboard.writeText(codeBlock.textContent)
+        .then(() => {
+          showToast('CSS 테마 변수가 클립보드에 복사되었습니다!');
+        })
+        .catch(err => {
+          console.error('Copy failed:', err);
+          showToast('복사 실패. 브라우저 권한을 확인해주세요.');
+        });
+    }
+
+    // Initial Setup on load
+    window.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      changeTheme('clean-corporate');
+    });
+  </script>
+</body>
+</html>
