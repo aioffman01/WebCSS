@@ -1816,6 +1816,10 @@
                 <i data-lucide="sliders-horizontal"></i>
                 <span>Top Category Toolbar</span>
               </li>
+              <li class="tree-item" data-view="ecommercegrid" onclick="selectView('ecommercegrid', this)">
+                <i data-lucide="shopping-bag"></i>
+                <span>E-Commerce Grid & Filter</span>
+              </li>
             </ul>
           </li>
 
@@ -2993,6 +2997,116 @@ Build a modern Web application layout featuring a Sticky Top Category Toolbar.
           </div>
         </section>
 
+        <!-- 16. E-Commerce Grid & Filter -->
+        <section id="view-ecommercegrid" class="content-view">
+          <div class="dashboard-grid">
+            <div class="card span-12">
+              <div class="card-header">
+                <h2><i data-lucide="shopping-bag" style="vertical-align: middle; margin-right: 8px;"></i> E-Commerce Grid & Filter 레이아웃 특성</h2>
+                <button class="btn btn-xs btn-primary" onclick="openLayoutSample('ecommercegrid')">
+                  <i data-lucide="external-link" class="btn-icon-xs"></i> 샘플 보기
+                </button>
+              </div>
+              <p style="line-height: 1.6; margin-bottom: 12px;">
+                <strong>E-Commerce Grid & Filter Layout</strong>은 쇼핑몰, 카탈로그, 디지털 마켓플레이스의 세계 표준 네비게이션입니다. 좌측에 **고정 필터 사이드바 (Sticky Filter Sidebar)**(가격 범위, 카테고리, 브랜드, 평점, 색상 스와치)를 배치하고, 우측 반응형 3~4열 영역에 **상품 이미지 및 장바구니 카드 그리드**를 전개합니다.
+              </p>
+              <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: var(--primary);">Vibe Coding에서의 강점</h3>
+              <ul style="padding-left: 20px; line-height: 1.6;">
+                <li>복잡한 필터 체인(다중 체크박스 & 라디오)과 상품 목록 데이터 바인딩을 AI 프롬프트 한 번으로 설계하기 가장 유리함.</li>
+                <li>이커머스 브랜드의 시각적 패션감과 20가지 테마 스킨의 미학적 연동 극대화.</li>
+              </ul>
+            </div>
+
+            <!-- 라이브 렌더링 실시간 시각 예시 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>E-Commerce Grid & Filter 라이브 예시 (현재 테마 스킨 적용 뷰)</h2>
+              </div>
+              <div class="layout-mockup-wrapper">
+                <div style="display:flex; flex-direction:column; gap:12px; min-height:300px;">
+                  <!-- Top Shopping Header -->
+                  <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:10px 16px; border-radius:var(--radius-sm); display:flex; justify-content:space-between; align-items:center;">
+                    <div style="font-weight:800; color:var(--primary); font-size:0.95rem; display:flex; align-items:center; gap:6px;">
+                      <i data-lucide="shopping-bag" style="width:18px; height:18px;"></i> Vibe Style Store
+                    </div>
+                    <div style="display:flex; align-items:center; gap:12px;">
+                      <span style="font-size:0.8rem; color:var(--text-muted);">🔍 검색어 입력...</span>
+                      <span style="font-size:0.8rem; color:var(--text-main); font-weight:600;">❤️ 찜 (2)</span>
+                      <span style="font-size:0.8rem; color:var(--primary); font-weight:700; background:var(--primary-light); padding:4px 10px; border-radius:12px;">🛒 장바구니 (3)</span>
+                    </div>
+                  </div>
+
+                  <!-- Shopping Main Layout (Filter Drawer + Product Grid) -->
+                  <div style="display:flex; gap:12px; min-height:220px;">
+                    <!-- Left Sticky Filter Drawer (200px) -->
+                    <div style="width:200px; background:var(--bg-card); border:1px solid var(--border-color); border-radius:var(--radius-sm); padding:12px; display:flex; flex-direction:column; gap:12px;">
+                      <div style="font-size:0.85rem; font-weight:700; color:var(--primary); border-bottom:1px solid var(--border-color); padding-bottom:6px;">🎛️ 상품 필터</div>
+                      <div>
+                        <div style="font-size:0.75rem; font-weight:600; color:var(--text-muted); margin-bottom:4px;">카테고리</div>
+                        <div style="font-size:0.75rem; display:flex; flex-direction:column; gap:3px;">
+                          <label style="display:flex; align-items:center; gap:4px;"><input type="checkbox" checked> 전체 의류</label>
+                          <label style="display:flex; align-items:center; gap:4px;"><input type="checkbox"> 슈즈 & 스니커즈</label>
+                          <label style="display:flex; align-items:center; gap:4px;"><input type="checkbox"> 액세서리</label>
+                        </div>
+                      </div>
+                      <div>
+                        <div style="font-size:0.75rem; font-weight:600; color:var(--text-muted); margin-bottom:4px;">가격대 (Price Range)</div>
+                        <input type="range" style="width:100%;" value="70">
+                        <div style="font-size:0.7rem; color:var(--text-muted); display:flex; justify-content:space-between;"><span>$10</span><span>$500</span></div>
+                      </div>
+                    </div>
+
+                    <!-- Right Responsive Product Grid (3 Columns) -->
+                    <div style="flex:1; display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;">
+                      <div class="bento-box" style="padding:10px; display:flex; flex-direction:column; justify-content:space-between;">
+                        <div style="background:var(--primary-light); height:70px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--primary); font-weight:700; font-size:0.75rem;">NEW ARRIVAL</div>
+                        <div style="margin-top:6px;">
+                          <h4 style="font-size:0.8rem; font-weight:700;">프리미엄 후드 집업</h4>
+                          <p style="font-size:0.75rem; color:var(--primary); font-weight:700;">$89.00</p>
+                        </div>
+                        <button class="btn btn-xs btn-primary" style="margin-top:6px; width:100%;">담기</button>
+                      </div>
+                      <div class="bento-box" style="padding:10px; display:flex; flex-direction:column; justify-content:space-between;">
+                        <div style="background:var(--primary-light); height:70px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--primary); font-weight:700; font-size:0.75rem;">BEST SELLER</div>
+                        <div style="margin-top:6px;">
+                          <h4 style="font-size:0.8rem; font-weight:700;">미니멀 스니커즈</h4>
+                          <p style="font-size:0.75rem; color:var(--primary); font-weight:700;">$129.00</p>
+                        </div>
+                        <button class="btn btn-xs btn-primary" style="margin-top:6px; width:100%;">담기</button>
+                      </div>
+                      <div class="bento-box" style="padding:10px; display:flex; flex-direction:column; justify-content:space-between;">
+                        <div style="background:var(--primary-light); height:70px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; color:var(--primary); font-weight:700; font-size:0.75rem;">HOT ITEM</div>
+                        <div style="margin-top:6px;">
+                          <h4 style="font-size:0.8rem; font-weight:700;">클래식 가죽 볼캡</h4>
+                          <p style="font-size:0.75rem; color:var(--primary); font-weight:700;">$45.00</p>
+                        </div>
+                        <button class="btn btn-xs btn-primary" style="margin-top:6px; width:100%;">담기</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vibe Coding MD 프롬프트 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Vibe Coding용 MD 프롬프트 (E-Commerce Grid & Filter)</h2>
+                <button class="btn btn-xs btn-outline-primary" onclick="copyLayoutPrompt('prompt-ecommercegrid')">
+                  <i data-lucide="copy" class="btn-icon-xs"></i> 복사하기
+                </button>
+              </div>
+              <div class="code-container">
+                <textarea id="prompt-ecommercegrid" readonly style="width:100%; height:130px; background:transparent; border:none; color:var(--text-main); font-family:var(--font-mono); font-size:0.8rem; resize:none; outline:none;"># Vibe Coding Prompt: E-Commerce Product Grid & Filter Drawer Layout
+Build a modern E-Commerce Shopping Mall UI layout.
+- Shopping Header Bar: Top bar containing Brand Logo (`color: var(--primary);`), Search input, Wishlist badge, and Shopping Cart CTA button.
+- Sticky Filter Sidebar: Left panel (`width: 220px; background: var(--bg-card); position: sticky; top: 20px;`) featuring Category checkboxes, Price slider, Color swatches, and Rating filter options.
+- Product Cards Grid: Main area (`display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;`) featuring Product Image, Title, Price badge (`color: var(--primary);`), Ratings, and Add to Cart button.</textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- 15. Mobile Bottom Navigation -->
         <section id="view-mobilebottomnav" class="content-view">
           <div class="dashboard-grid">
@@ -3638,6 +3752,7 @@ Build a Fintech Mobile App Wallet dashboard layout.
           'feedmasonry': '레이아웃 가이드 > Feed & Masonry',
           'landinghero': '레이아웃 가이드 > Landing Hero',
           'topcategorytoolbar': '레이아웃 가이드 > Top Category Toolbar',
+          'ecommercegrid': '레이아웃 가이드 > E-Commerce Grid & Filter',
           'mobilebottomnav': '모바일 레이아웃 > Bottom Navigation',
           'mobilestoryfeed': '모바일 레이아웃 > Card Feed & Story',
           'mobilefab': '모바일 레이아웃 > FAB Action',
