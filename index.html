@@ -981,6 +981,143 @@
       gap: 12px;
     }
 
+    /* Mobile Device Frame Mockup Styles */
+    .mobile-frame-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 0;
+      background: var(--bg-app);
+      border: 1px dashed var(--border-color);
+      border-radius: var(--radius-md);
+      margin-top: 12px;
+    }
+    .phone-mockup {
+      width: 300px;
+      height: 540px;
+      background: var(--bg-card);
+      border: 8px solid var(--border-color);
+      border-radius: 36px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+    }
+    .phone-notch {
+      width: 110px;
+      height: 16px;
+      background: var(--border-color);
+      margin: 0 auto;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .phone-screen {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      position: relative;
+      background: var(--bg-app);
+    }
+    .mobile-app-header {
+      height: 44px;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    .mobile-app-bottom-bar {
+      height: 52px;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      flex-shrink: 0;
+    }
+    .mobile-tab-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      cursor: pointer;
+    }
+    .mobile-tab-item.active {
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .mobile-fab-btn {
+      position: absolute;
+      bottom: 64px;
+      right: 14px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      z-index: 10;
+    }
+    .mobile-story-bar {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      overflow-x: auto;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      flex-shrink: 0;
+    }
+    .story-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      padding: 2px;
+      border: 2px solid var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-app);
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .mobile-sheet {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-card);
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+      border-top: 1px solid var(--border-color);
+      padding: 14px;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.15);
+      z-index: 15;
+    }
+    .sheet-handle {
+      width: 32px;
+      height: 4px;
+      background: var(--border-color);
+      border-radius: 2px;
+      margin: 0 auto 10px auto;
+    }
+
     .card-header {
       display: flex;
       align-items: center;
@@ -1674,6 +1811,41 @@
               <li class="tree-item" data-view="landinghero" onclick="selectView('landinghero', this)">
                 <i data-lucide="rows-3"></i>
                 <span>Landing Hero</span>
+              </li>
+            </ul>
+          </li>
+
+          <!-- 모바일 레이아웃 가이드 폴더 -->
+          <li class="tree-node folder open" id="folder-mobile-layout">
+            <div class="tree-node-title" onclick="toggleFolder('folder-mobile-layout')">
+              <i data-lucide="chevron-down" class="chevron-icon"></i>
+              <i data-lucide="smartphone" class="folder-icon"></i>
+              <span>모바일 레이아웃 가이드</span>
+            </div>
+            <ul class="tree-children">
+              <li class="tree-item" data-view="mobilebottomnav" onclick="selectView('mobilebottomnav', this)">
+                <i data-lucide="smartphone"></i>
+                <span>Bottom Navigation</span>
+              </li>
+              <li class="tree-item" data-view="mobilestoryfeed" onclick="selectView('mobilestoryfeed', this)">
+                <i data-lucide="image"></i>
+                <span>Card Feed & Story</span>
+              </li>
+              <li class="tree-item" data-view="mobilefab" onclick="selectView('mobilefab', this)">
+                <i data-lucide="plus-circle"></i>
+                <span>FAB Action</span>
+              </li>
+              <li class="tree-item" data-view="mobiledrawertabs" onclick="selectView('mobiledrawertabs', this)">
+                <i data-lucide="menu"></i>
+                <span>Drawer & Top Tabs</span>
+              </li>
+              <li class="tree-item" data-view="mobilebottomsheet" onclick="selectView('mobilebottomsheet', this)">
+                <i data-lucide="panel-bottom"></i>
+                <span>Bottom Sheet</span>
+              </li>
+              <li class="tree-item" data-view="mobilequickgrid" onclick="selectView('mobilequickgrid', this)">
+                <i data-lucide="credit-card"></i>
+                <span>Fintech Grid & Carousel</span>
               </li>
             </ul>
           </li>
@@ -2706,6 +2878,415 @@ Build a conversion-focused Landing Page layout.
           </div>
         </section>
 
+        <!-- 15. Mobile Bottom Navigation -->
+        <section id="view-mobilebottomnav" class="content-view">
+          <div class="dashboard-grid">
+            <div class="card span-12">
+              <div class="card-header">
+                <h2><i data-lucide="smartphone" style="vertical-align: middle; margin-right: 8px;"></i> Bottom Navigation 레이아웃 특성</h2>
+              </div>
+              <p style="line-height: 1.6; margin-bottom: 12px;">
+                <strong>Bottom Navigation (바텀 네비게이션)</strong>은 엄지손가락 영역(Thumb Zone)에 맞춰 스마트폰 화면 가장 하단에 고정 탭바(4~5개 메인 네비게이션 아이콘)를 배치하는 모바일 UX의 글로벌 가이드라인 표준입니다. (토스, 인스타그램, 유튜브 필수 탑재)
+              </p>
+              <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: var(--primary);">Vibe Coding 모바일에서의 강점</h3>
+              <ul style="padding-left: 20px; line-height: 1.6;">
+                <li>한 손 조작성이 극대화되어 사용자의 탭 조작 편의성 제공.</li>
+                <li>React Native / Flutter의 `BottomNavigationBar` 또는 Web Flexbox (`position: fixed; bottom: 0`)로 직관적 빌드.</li>
+              </ul>
+            </div>
+
+            <!-- 스마트폰 프레임 라이브 예시 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Bottom Navigation 라이브 모바일 프레임 (현재 테마 스킨 동기화)</h2>
+              </div>
+              <div class="mobile-frame-wrapper">
+                <div class="phone-mockup">
+                  <div class="phone-notch"></div>
+                  <div class="mobile-app-header">
+                    <span>📱 Toss Style App</span>
+                    <i data-lucide="bell" style="width:16px;"></i>
+                  </div>
+                  <div class="phone-screen" style="padding:12px; gap:10px;">
+                    <div style="background:var(--primary-light); padding:16px; border-radius:12px; border:1px solid var(--border-color);">
+                      <h4 style="font-size:0.85rem; color:var(--primary);">총 자산 12,480,000원</h4>
+                      <p style="font-size:0.7rem; color:var(--text-muted); margin-top:4px;">주거래 계좌에서 실시간 동기화 됨</p>
+                    </div>
+                    <div style="background:var(--bg-card); padding:12px; border-radius:10px; border:1px solid var(--border-color); font-size:0.8rem;">
+                      <span>💸 송금하기</span>
+                    </div>
+                    <div style="background:var(--bg-card); padding:12px; border-radius:10px; border:1px solid var(--border-color); font-size:0.8rem;">
+                      <span>💳 내 카드 혜택 보기</span>
+                    </div>
+                  </div>
+                  <div class="mobile-app-bottom-bar">
+                    <div class="mobile-tab-item active"><i data-lucide="home" style="width:18px;"></i>홈</div>
+                    <div class="mobile-tab-item"><i data-lucide="search" style="width:18px;"></i>탐색</div>
+                    <div class="mobile-tab-item"><i data-lucide="send" style="width:18px;"></i>송금</div>
+                    <div class="mobile-tab-item"><i data-lucide="user" style="width:18px;"></i>MY</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vibe Coding MD 프롬프트 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Vibe Coding용 MD 프롬프트 (Mobile Bottom Nav)</h2>
+                <button class="btn btn-xs btn-outline-primary" onclick="copyLayoutPrompt('prompt-mobilebottomnav')">
+                  <i data-lucide="copy" class="btn-icon-xs"></i> 복사하기
+                </button>
+              </div>
+              <div class="code-container">
+                <textarea id="prompt-mobilebottomnav" readonly style="width:100%; height:130px; background:transparent; border:none; color:var(--text-main); font-family:var(--font-mono); font-size:0.8rem; resize:none; outline:none;"># Vibe Coding Prompt: Mobile App Bottom Navigation Layout
+Build a mobile app view with a fixed bottom tab bar (Thumb Zone UX).
+- Mobile Viewport: Max width 420px centered container with overflow-y scroll for main content.
+- Header: Sticky top bar (`height: 48px; background: var(--bg-card); border-bottom: 1px solid var(--border-color);`).
+- Bottom Bar: Fixed bottom bar (`position: fixed; bottom: 0; height: 56px; display: flex; justify-content: space-around; background: var(--bg-card); border-top: 1px solid var(--border-color);`).
+- Active Tab Indicator: Highlight current active tab icon & label with `var(--primary)` color.</textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 16. Mobile Story Feed -->
+        <section id="view-mobilestoryfeed" class="content-view">
+          <div class="dashboard-grid">
+            <div class="card span-12">
+              <div class="card-header">
+                <h2><i data-lucide="image" style="vertical-align: middle; margin-right: 8px;"></i> Card Feed & Story 레이아웃 특성</h2>
+              </div>
+              <p style="line-height: 1.6; margin-bottom: 12px;">
+                <strong>Card Feed & Story Scroll</strong>은 앱 최상단에 가로로 스크롤되는 원형 스토리 아이콘(Horizontal Story Ring)을 배치하고, 그 아래로 전면 카드 피드를 세로 스크롤하게 만드는 SNS & 쇼핑 모바일 대표 UI 패턴입니다.
+              </p>
+              <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: var(--primary);">Vibe Coding 모바일에서의 강점</h3>
+              <ul style="padding-left: 20px; line-height: 1.6;">
+                <li>신규 소식/이벤트(스토리)를 최상단에 매력적으로 노출.</li>
+                <li>세로 스크롤 카드 피드로 미디어 및 상품 소식 몰입감 제고.</li>
+              </ul>
+            </div>
+
+            <!-- 스마트폰 프레임 라이브 예시 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Card Feed & Story 라이브 모바일 프레임 (현재 테마 스킨 동기화)</h2>
+              </div>
+              <div class="mobile-frame-wrapper">
+                <div class="phone-mockup">
+                  <div class="phone-notch"></div>
+                  <div class="mobile-app-header">
+                    <span>📷 Insta Feed</span>
+                    <i data-lucide="heart" style="width:16px;"></i>
+                  </div>
+                  <!-- 스토리 바 -->
+                  <div class="mobile-story-bar">
+                    <div class="story-circle">내 스토리</div>
+                    <div class="story-circle">Alex</div>
+                    <div class="story-circle">Sarah</div>
+                    <div class="story-circle">Tech</div>
+                  </div>
+                  <div class="phone-screen" style="padding:10px; gap:10px;">
+                    <div style="background:var(--bg-card); border-radius:12px; border:1px solid var(--border-color); overflow:hidden;">
+                      <div style="height:120px; background:var(--primary-light); display:flex; align-items:center; justify-content:center; color:var(--primary); font-weight:700;">
+                        Media Content View
+                      </div>
+                      <div style="padding:10px; font-size:0.75rem;">
+                        <strong>@antigravity_dev</strong> 모바일 라이브 스킨 렌더링 피드 포스트입니다.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mobile-app-bottom-bar">
+                    <div class="mobile-tab-item active"><i data-lucide="home" style="width:18px;"></i></div>
+                    <div class="mobile-tab-item"><i data-lucide="search" style="width:18px;"></i></div>
+                    <div class="mobile-tab-item"><i data-lucide="plus-square" style="width:18px;"></i></div>
+                    <div class="mobile-tab-item"><i data-lucide="user" style="width:18px;"></i></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vibe Coding MD 프롬프트 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Vibe Coding용 MD 프롬프트 (Mobile Story Feed)</h2>
+                <button class="btn btn-xs btn-outline-primary" onclick="copyLayoutPrompt('prompt-mobilestoryfeed')">
+                  <i data-lucide="copy" class="btn-icon-xs"></i> 복사하기
+                </button>
+              </div>
+              <div class="code-container">
+                <textarea id="prompt-mobilestoryfeed" readonly style="width:100%; height:130px; background:transparent; border:none; color:var(--text-main); font-family:var(--font-mono); font-size:0.8rem; resize:none; outline:none;"># Vibe Coding Prompt: Mobile Story & Card Feed Layout
+Create an Instagram-style Mobile Story Feed layout.
+- Horizontal Story Row: Top scrollable container (`display: flex; gap: 12px; overflow-x: auto; padding: 12px; background: var(--bg-card);`).
+- Story Circle: `width: 56px; height: 56px; border-radius: 50%; border: 2px solid var(--primary);`
+- Vertical Feed: Below the story row, stack full-width image/content cards (`border-radius: var(--radius-sm); border: 1px solid var(--border-color);`).</textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 17. Mobile FAB Action -->
+        <section id="view-mobilefab" class="content-view">
+          <div class="dashboard-grid">
+            <div class="card span-12">
+              <div class="card-header">
+                <h2><i data-lucide="plus-circle" style="vertical-align: middle; margin-right: 8px;"></i> FAB Action 레이아웃 특성</h2>
+              </div>
+              <p style="line-height: 1.6; margin-bottom: 12px;">
+                <strong>FAB (Floating Action Button) Layout</strong>은 구글 Material Design의 시그니처 패턴으로, 사용자가 화면을 스크롤하더라도 우측 하단에 떠 있는 플로팅 버튼(+)을 통해 '새 글 작성', '추가하기' 등 핵심 기능을 즉각 실행하게 해주는 UX입니다.
+              </p>
+              <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: var(--primary);">Vibe Coding 모바일에서의 강점</h3>
+              <ul style="padding-left: 20px; line-height: 1.6;">
+                <li>메모, 할 일 관리(TodoList), 메일 작성 등 빠른 데이터 입력을 요하는 생산성 모바일 앱에 최적.</li>
+                <li>`position: absolute/fixed; bottom: 20px; right: 20px;`로 쉬운 구현.</li>
+              </ul>
+            </div>
+
+            <!-- 스마트폰 프레임 라이브 예시 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>FAB Action 라이브 모바일 프레임 (현재 테마 스킨 동기화)</h2>
+              </div>
+              <div class="mobile-frame-wrapper">
+                <div class="phone-mockup">
+                  <div class="phone-notch"></div>
+                  <div class="mobile-app-header">
+                    <span>📝 Task Manager</span>
+                    <i data-lucide="more-vertical" style="width:16px;"></i>
+                  </div>
+                  <div class="phone-screen" style="padding:12px; gap:8px;">
+                    <div style="background:var(--bg-card); padding:10px; border-radius:8px; border:1px solid var(--border-color); font-size:0.8rem;">
+                      ✅ 1. 20가지 스킨 모바일 호환성 체크
+                    </div>
+                    <div style="background:var(--bg-card); padding:10px; border-radius:8px; border:1px solid var(--border-color); font-size:0.8rem;">
+                      ✅ 2. Vibe Coding MD 프롬프트 검수
+                    </div>
+                    <div style="background:var(--bg-card); padding:10px; border-radius:8px; border:1px solid var(--border-color); font-size:0.8rem;">
+                      ⬜ 3. 모바일 앱 배포 준비 완료
+                    </div>
+                  </div>
+                  <!-- Floating Action Button -->
+                  <div class="mobile-fab-btn">
+                    <i data-lucide="plus" style="width:24px; height:24px;"></i>
+                  </div>
+                  <div class="mobile-app-bottom-bar">
+                    <div class="mobile-tab-item active"><i data-lucide="check-square" style="width:18px;"></i>할일</div>
+                    <div class="mobile-tab-item"><i data-lucide="calendar" style="width:18px;"></i>달력</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vibe Coding MD 프롬프트 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Vibe Coding용 MD 프롬프트 (Mobile FAB)</h2>
+                <button class="btn btn-xs btn-outline-primary" onclick="copyLayoutPrompt('prompt-mobilefab')">
+                  <i data-lucide="copy" class="btn-icon-xs"></i> 복사하기
+                </button>
+              </div>
+              <div class="code-container">
+                <textarea id="prompt-mobilefab" readonly style="width:100%; height:130px; background:transparent; border:none; color:var(--text-main); font-family:var(--font-mono); font-size:0.8rem; resize:none; outline:none;"># Vibe Coding Prompt: Mobile Floating Action Button (FAB) Layout
+Implement a Material Design style Mobile FAB Layout.
+- Scrollable Item List: Vertical list of task cards with checkbox controls.
+- Floating Action Button: Circular button fixed at bottom-right (`position: fixed; bottom: 70px; right: 20px; width: 56px; height: 56px; border-radius: 50%; background: var(--primary); color: white; box-shadow: var(--shadow-md);`).
+- Clicking FAB opens a quick add modal sheet.</textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 18. Mobile Drawer & Top Tabs -->
+        <section id="view-mobiledrawertabs" class="content-view">
+          <div class="dashboard-grid">
+            <div class="card span-12">
+              <div class="card-header">
+                <h2><i data-lucide="menu" style="vertical-align: middle; margin-right: 8px;"></i> Drawer & Top Tabs 레이아웃 특성</h2>
+              </div>
+              <p style="line-height: 1.6; margin-bottom: 12px;">
+                <strong>Drawer & Top Tabs Layout</strong>은 햄버거 메뉴를 눌러 전체 카테고리 드로어(Side Drawer)를 슬라이딩으로 열고, 앱 메인 상단에서는 탭바(전체/인기/추천)를 스와이프하여 콘텐츠 카테고리를 직관적으로 이동하는 구조입니다.
+              </p>
+              <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: var(--primary);">Vibe Coding 모바일에서의 강점</h3>
+              <ul style="padding-left: 20px; line-height: 1.6;">
+                <li>많은 카테고리와 아티클을 가진 뉴스 포털, 커뮤니티, 쇼핑몰 모바일 앱에 적합.</li>
+              </ul>
+            </div>
+
+            <!-- 스마트폰 프레임 라이브 예시 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Drawer & Top Tabs 라이브 모바일 프레임 (현재 테마 스킨 동기화)</h2>
+              </div>
+              <div class="mobile-frame-wrapper">
+                <div class="phone-mockup">
+                  <div class="phone-notch"></div>
+                  <div class="mobile-app-header">
+                    <i data-lucide="menu" style="width:18px;"></i>
+                    <span>📰 Tech News Portal</span>
+                    <i data-lucide="search" style="width:18px;"></i>
+                  </div>
+                  <!-- 상단 탭바 -->
+                  <div style="display:flex; background:var(--bg-card); border-bottom:1px solid var(--border-color); font-size:0.75rem;">
+                    <div style="flex:1; text-align:center; padding:8px; border-bottom:2px solid var(--primary); font-weight:700; color:var(--primary);">추천</div>
+                    <div style="flex:1; text-align:center; padding:8px; color:var(--text-muted);">인기</div>
+                    <div style="flex:1; text-align:center; padding:8px; color:var(--text-muted);">최신</div>
+                  </div>
+                  <div class="phone-screen" style="padding:10px; gap:8px;">
+                    <div style="background:var(--bg-card); padding:10px; border-radius:8px; border:1px solid var(--border-color); font-size:0.75rem;">
+                      🔥 <strong>AI Vibe Coding 트렌드</strong>: 20가지 CSS 테마와 레이아웃의 만남
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vibe Coding MD 프롬프트 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Vibe Coding용 MD 프롬프트 (Mobile Drawer & Tabs)</h2>
+                <button class="btn btn-xs btn-outline-primary" onclick="copyLayoutPrompt('prompt-mobiledrawertabs')">
+                  <i data-lucide="copy" class="btn-icon-xs"></i> 복사하기
+                </button>
+              </div>
+              <div class="code-container">
+                <textarea id="prompt-mobiledrawertabs" readonly style="width:100%; height:130px; background:transparent; border:none; color:var(--text-main); font-family:var(--font-mono); font-size:0.8rem; resize:none; outline:none;"># Vibe Coding Prompt: Mobile Navigation Drawer & Top Tabs
+Build a Mobile Portal Layout with Side Drawer & Top Category Tabs.
+- Header: Left hamburger menu icon, title, right search icon.
+- Top Tab Bar: Scrollable horizontal tab bar (`display: flex; border-bottom: 1px solid var(--border-color);`). Active tab highlighted with bottom border (`border-bottom: 2px solid var(--primary);`).
+- Navigation Drawer: Slide-out panel (`position: absolute; left: 0; top: 0; bottom: 0; width: 80%; background: var(--bg-card); z-index: 50;`).</textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 19. Mobile Bottom Sheet -->
+        <section id="view-mobilebottomsheet" class="content-view">
+          <div class="dashboard-grid">
+            <div class="card span-12">
+              <div class="card-header">
+                <h2><i data-lucide="panel-bottom" style="vertical-align: middle; margin-right: 8px;"></i> Bottom Modal Sheet 레이아웃 특성</h2>
+              </div>
+              <p style="line-height: 1.6; margin-bottom: 12px;">
+                <strong>Bottom Modal Sheet (바텀 시트)</strong>는 하단에서 부드럽게 위로 올라오는 모달 패널로, 결제 수단 선택, 택시/배달 호출 옵션 설정, 필터링 팝업 등 현대 모바일 UX에서 가장 사랑받는 모달 패턴입니다. (Toss, KakaoT, Uber 표준)
+              </p>
+              <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: var(--primary);">Vibe Coding 모바일에서의 강점</h3>
+              <ul style="padding-left: 20px; line-height: 1.6;">
+                <li>전체 화면을 가리지 않으면서 현재 맥락을 유지한 채 퀵 옵션을 선택 가능.</li>
+              </ul>
+            </div>
+
+            <!-- 스마트폰 프레임 라이브 예시 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Bottom Sheet 라이브 모바일 프레임 (현재 테마 스킨 동기화)</h2>
+              </div>
+              <div class="mobile-frame-wrapper">
+                <div class="phone-mockup">
+                  <div class="phone-notch"></div>
+                  <div class="mobile-app-header">
+                    <span>🚖 Taxi Call View</span>
+                  </div>
+                  <div class="phone-screen" style="background:var(--primary-light); padding:10px; display:flex; align-items:center; justify-content:center;">
+                    <span style="font-size:0.75rem; color:var(--primary); font-weight:700;">🗺️ Map Preview Background</span>
+                  </div>
+                  <!-- Bottom Sheet Over Map -->
+                  <div class="mobile-sheet">
+                    <div class="sheet-handle"></div>
+                    <h4 style="font-size:0.85rem; margin-bottom:6px;">결제 수단 및 출발 설정</h4>
+                    <p style="font-size:0.7rem; color:var(--text-muted); margin-bottom:10px;">등록된 KB 국민카드로 자동 결제됩니다.</p>
+                    <button class="btn btn-primary btn-xs" style="width:100%;">호출하기</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vibe Coding MD 프롬프트 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Vibe Coding용 MD 프롬프트 (Mobile Bottom Sheet)</h2>
+                <button class="btn btn-xs btn-outline-primary" onclick="copyLayoutPrompt('prompt-mobilebottomsheet')">
+                  <i data-lucide="copy" class="btn-icon-xs"></i> 복사하기
+                </button>
+              </div>
+              <div class="code-container">
+                <textarea id="prompt-mobilebottomsheet" readonly style="width:100%; height:130px; background:transparent; border:none; color:var(--text-main); font-family:var(--font-mono); font-size:0.8rem; resize:none; outline:none;"># Vibe Coding Prompt: Mobile Bottom Modal Sheet Layout
+Design an iOS/Android Bottom Sheet modal layout over a map/content background.
+- Background Layer: Map or main UI screen.
+- Bottom Sheet Overlay: Slide up card from bottom (`position: absolute; bottom: 0; left: 0; right: 0; background: var(--bg-card); border-top-left-radius: 20px; border-top-right-radius: 20px; padding: 20px; box-shadow: 0 -4px 20px rgba(0,0,0,0.2);`).
+- Handle bar indicator: Centered handle bar (`width: 40px; height: 4px; background: var(--border-color); border-radius: 2px;`).</textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 20. Mobile Fintech Grid & Carousel -->
+        <section id="view-mobilequickgrid" class="content-view">
+          <div class="dashboard-grid">
+            <div class="card span-12">
+              <div class="card-header">
+                <h2><i data-lucide="credit-card" style="vertical-align: middle; margin-right: 8px;"></i> Fintech Grid & Carousel 레이아웃 특성</h2>
+              </div>
+              <p style="line-height: 1.6; margin-bottom: 12px;">
+                <strong>Fintech Grid & Carousel</strong>은 모바일 핀테크/뱅킹 앱에서 사용자의 여러 계좌 및 신용카드를 가로 슬라이더(Carousel)로 넘겨보고, 하단에는 4x2 또는 4x1 퀵 아이콘 그리드(송금, 결제, 자산관리, 대출)를 배치하는 현대 금융 모바일 UX입니다.
+              </p>
+              <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: var(--primary);">Vibe Coding 모바일에서의 강점</h3>
+              <ul style="padding-left: 20px; line-height: 1.6;">
+                <li>복잡한 금융 지표와 액션 버튼을 가장 직관적으로 컴팩트하게 압축 가능.</li>
+              </ul>
+            </div>
+
+            <!-- 스마트폰 프레임 라이브 예시 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Fintech Grid & Carousel 라이브 모바일 프레임 (현재 테마 스킨 동기화)</h2>
+              </div>
+              <div class="mobile-frame-wrapper">
+                <div class="phone-mockup">
+                  <div class="phone-notch"></div>
+                  <div class="mobile-app-header">
+                    <span>💳 My Wallet</span>
+                    <i data-lucide="settings" style="width:16px;"></i>
+                  </div>
+                  <div class="phone-screen" style="padding:10px; gap:10px;">
+                    <!-- 카드 카루셀 -->
+                    <div style="background:var(--primary); color:#fff; padding:14px; border-radius:12px; box-shadow:var(--shadow-md);">
+                      <div style="font-size:0.7rem; opacity:0.8;">KB Premo Card</div>
+                      <div style="font-size:1.1rem; font-weight:700; margin-top:8px;">₩ 3,420,000</div>
+                    </div>
+                    <!-- 퀵 아이콘 그리드 -->
+                    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:8px; background:var(--bg-card); padding:10px; border-radius:10px; border:1px solid var(--border-color); text-align:center; font-size:0.65rem;">
+                      <div><i data-lucide="send" style="width:16px;"></i><div>송금</div></div>
+                      <div><i data-lucide="qr-code" style="width:16px;"></i><div>결제</div></div>
+                      <div><i data-lucide="pie-chart" style="width:16px;"></i><div>자산</div></div>
+                      <div><i data-lucide="gift" style="width:16px;"></i><div>혜택</div></div>
+                    </div>
+                  </div>
+                  <div class="mobile-app-bottom-bar">
+                    <div class="mobile-tab-item active"><i data-lucide="wallet" style="width:18px;"></i>자산</div>
+                    <div class="mobile-tab-item"><i data-lucide="shopping-bag" style="width:18px;"></i>쇼핑</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vibe Coding MD 프롬프트 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Vibe Coding용 MD 프롬프트 (Fintech Grid)</h2>
+                <button class="btn btn-xs btn-outline-primary" onclick="copyLayoutPrompt('prompt-mobilequickgrid')">
+                  <i data-lucide="copy" class="btn-icon-xs"></i> 복사하기
+                </button>
+              </div>
+              <div class="code-container">
+                <textarea id="prompt-mobilequickgrid" readonly style="width:100%; height:130px; background:transparent; border:none; color:var(--text-main); font-family:var(--font-mono); font-size:0.8rem; resize:none; outline:none;"># Vibe Coding Prompt: Mobile Fintech Account Carousel & Quick Grid
+Build a Fintech Mobile App Wallet dashboard layout.
+- Account Card Carousel: Top horizontal swipeable card list (`display: flex; gap: 12px; overflow-x: auto; padding: 12px; snap-type: x mandatory;`).
+- Quick Action Grid: 4-column icon grid (`display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; background: var(--bg-card); border-radius: var(--radius-md); padding: 16px;`).
+- Bottom Navigation: Fixed bottom tab bar for Wallet, Investment, and Profile views.</textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
     </main>
 
@@ -2922,7 +3503,13 @@ Build a conversion-focused Landing Page layout.
           'masterdetail': '레이아웃 가이드 > Master-Detail',
           'splitview': '레이아웃 가이드 > Split View',
           'feedmasonry': '레이아웃 가이드 > Feed & Masonry',
-          'landinghero': '레이아웃 가이드 > Landing Hero'
+          'landinghero': '레이아웃 가이드 > Landing Hero',
+          'mobilebottomnav': '모바일 레이아웃 > Bottom Navigation',
+          'mobilestoryfeed': '모바일 레이아웃 > Card Feed & Story',
+          'mobilefab': '모바일 레이아웃 > FAB Action',
+          'mobiledrawertabs': '모바일 레이아웃 > Drawer & Top Tabs',
+          'mobilebottomsheet': '모바일 레이아웃 > Bottom Sheet',
+          'mobilequickgrid': '모바일 레이아웃 > Fintech Grid & Carousel'
         };
         titleDisplay.textContent = KoreaNames[viewName] || viewName;
       }
