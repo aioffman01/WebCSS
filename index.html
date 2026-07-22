@@ -1812,6 +1812,10 @@
                 <i data-lucide="rows-3"></i>
                 <span>Landing Hero</span>
               </li>
+              <li class="tree-item" data-view="topcategorytoolbar" onclick="selectView('topcategorytoolbar', this)">
+                <i data-lucide="sliders-horizontal"></i>
+                <span>Top Category Toolbar</span>
+              </li>
             </ul>
           </li>
 
@@ -2896,6 +2900,99 @@ Build a conversion-focused Landing Page layout.
           </div>
         </section>
 
+        <!-- 15. Top Category Toolbar -->
+        <section id="view-topcategorytoolbar" class="content-view">
+          <div class="dashboard-grid">
+            <div class="card span-12">
+              <div class="card-header">
+                <h2><i data-lucide="sliders-horizontal" style="vertical-align: middle; margin-right: 8px;"></i> Top Category Toolbar 레이아웃 특성</h2>
+                <button class="btn btn-xs btn-primary" onclick="openLayoutSample('topcategorytoolbar')">
+                  <i data-lucide="external-link" class="btn-icon-xs"></i> 샘플 보기
+                </button>
+              </div>
+              <p style="line-height: 1.6; margin-bottom: 12px;">
+                <strong>Top Category Toolbar Layout</strong>은 글로벌 상단 헤더 바로 아래에 **카테고리 칩(Category Chips) 툴바 및 필터/정렬 바**를 고정 배치하는 현대적 웹 서비스 레이아웃입니다. Airbnb의 카테고리 필터바, Notion의 뷰 선택바, 이커머스의 탭 네비게이션처럼 사용자가 화면 전환 없이 상단 툴바에서 카테고리를 클릭해 콘텐츠를 실시간 탐색할 때 최상의 사용자 경험을 선사합니다.
+              </p>
+              <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: var(--primary);">Vibe Coding에서의 강점</h3>
+              <ul style="padding-left: 20px; line-height: 1.6;">
+                <li>대용량 카테고리나 멀티 필터링 검색 시스템을 구축할 때 AI 프롬프트 생성이 가장 용이함.</li>
+                <li>글로벌 헤더와 2차 툴바가 분리되어 상단 UI의 시각적 안정감 및 가독성 제공.</li>
+              </ul>
+            </div>
+
+            <!-- 라이브 렌더링 실시간 시각 예시 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Top Category Toolbar 라이브 예시 (현재 테마 스킨 적용 뷰)</h2>
+              </div>
+              <div class="layout-mockup-wrapper">
+                <div style="display:flex; flex-direction:column; gap:12px; min-height:260px;">
+                  <!-- Top Global Header -->
+                  <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:10px 16px; border-radius:var(--radius-sm); display:flex; justify-content:space-between; align-items:center;">
+                    <div style="font-weight:800; color:var(--primary); font-size:0.9rem; display:flex; align-items:center; gap:6px;">
+                      <i data-lucide="layers" style="width:16px; height:16px;"></i> Category Workspace
+                    </div>
+                    <div style="display:flex; align-items:center; gap:8px;">
+                      <div style="background:var(--bg-app); border:1px solid var(--border-color); padding:4px 10px; border-radius:var(--radius-sm); font-size:0.75rem; color:var(--text-muted); width:180px;">🔍 Search categories...</div>
+                      <div style="width:26px; height:26px; border-radius:50%; background:var(--primary-light); color:var(--primary); font-weight:700; font-size:0.75rem; display:flex; align-items:center; justify-content:center;">AI</div>
+                    </div>
+                  </div>
+
+                  <!-- Top Sticky Category Toolbar -->
+                  <div style="background:var(--bg-card); border:1px solid var(--border-color); padding:8px 12px; border-radius:var(--radius-sm); display:flex; justify-content:space-between; align-items:center;">
+                    <!-- Horizontal Category Chips -->
+                    <div style="display:flex; gap:6px; overflow-x:auto;">
+                      <button style="padding:4px 10px; border-radius:14px; border:1px solid var(--primary); background:var(--primary); color:#fff; font-size:0.75rem; font-weight:600; cursor:pointer;">전체 (All)</button>
+                      <button style="padding:4px 10px; border-radius:14px; border:1px solid var(--border-color); background:var(--bg-app); color:var(--text-main); font-size:0.75rem; cursor:pointer;">⚡ 프론트엔드</button>
+                      <button style="padding:4px 10px; border-radius:14px; border:1px solid var(--border-color); background:var(--bg-app); color:var(--text-main); font-size:0.75rem; cursor:pointer;">🖥️ 백엔드</button>
+                      <button style="padding:4px 10px; border-radius:14px; border:1px solid var(--border-color); background:var(--bg-app); color:var(--text-main); font-size:0.75rem; cursor:pointer;">🤖 AI / 데이터</button>
+                      <button style="padding:4px 10px; border-radius:14px; border:1px solid var(--border-color); background:var(--bg-app); color:var(--text-main); font-size:0.75rem; cursor:pointer;">☁️ Cloud DevOps</button>
+                    </div>
+                    <!-- Right Toolbar Action Items -->
+                    <div style="display:flex; gap:6px; align-items:center; flex-shrink:0;">
+                      <span style="font-size:0.75rem; color:var(--text-muted); border:1px solid var(--border-color); padding:4px 8px; border-radius:var(--radius-sm); background:var(--bg-app);">최신순 ▾</span>
+                      <button style="padding:4px 8px; border-radius:var(--radius-sm); border:1px solid var(--border-color); background:var(--bg-app); color:var(--text-main); font-size:0.75rem;">필터</button>
+                    </div>
+                  </div>
+
+                  <!-- Main Cards Grid Area -->
+                  <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px;">
+                    <div class="bento-box">
+                      <h4 style="font-size:0.85rem; color:var(--primary);">WebCSS Design System</h4>
+                      <p style="font-size:0.75rem; color:var(--text-muted);">카테고리 툴바 레이아웃 카드 샘플 1</p>
+                    </div>
+                    <div class="bento-box">
+                      <h4 style="font-size:0.85rem; color:var(--primary);">Vibe Coding Layout</h4>
+                      <p style="font-size:0.75rem; color:var(--text-muted);">카테고리 툴바 레이아웃 카드 샘플 2</p>
+                    </div>
+                    <div class="bento-box">
+                      <h4 style="font-size:0.85rem; color:var(--primary);">Theme Skin Sync</h4>
+                      <p style="font-size:0.75rem; color:var(--text-muted);">카테고리 툴바 레이아웃 카드 샘플 3</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vibe Coding MD 프롬프트 -->
+            <div class="card span-12">
+              <div class="card-header">
+                <h2>Vibe Coding용 MD 프롬프트 (Top Category Toolbar)</h2>
+                <button class="btn btn-xs btn-outline-primary" onclick="copyLayoutPrompt('prompt-topcategorytoolbar')">
+                  <i data-lucide="copy" class="btn-icon-xs"></i> 복사하기
+                </button>
+              </div>
+              <div class="code-container">
+                <textarea id="prompt-topcategorytoolbar" readonly style="width:100%; height:130px; background:transparent; border:none; color:var(--text-main); font-family:var(--font-mono); font-size:0.8rem; resize:none; outline:none;"># Vibe Coding Prompt: Sticky Top Category Toolbar Layout
+Build a modern Web application layout featuring a Sticky Top Category Toolbar.
+- Global Navigation Header: Top bar containing Logo (`color: var(--primary);`), Search input, and User profile badge.
+- Secondary Category Toolbar: Sticky horizontal bar (`display: flex; justify-content: space-between; padding: 8px 16px; background: var(--bg-card); border-bottom: 1px solid var(--border-color);`) containing horizontal category chips/tabs (`border-radius: 20px;`) and right-side sort/filter dropdowns.
+- Main Cards Grid Section: Responsive card grid (`display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;`) displaying category items.</textarea>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- 15. Mobile Bottom Navigation -->
         <section id="view-mobilebottomnav" class="content-view">
           <div class="dashboard-grid">
@@ -3540,6 +3637,7 @@ Build a Fintech Mobile App Wallet dashboard layout.
           'splitview': '레이아웃 가이드 > Split View',
           'feedmasonry': '레이아웃 가이드 > Feed & Masonry',
           'landinghero': '레이아웃 가이드 > Landing Hero',
+          'topcategorytoolbar': '레이아웃 가이드 > Top Category Toolbar',
           'mobilebottomnav': '모바일 레이아웃 > Bottom Navigation',
           'mobilestoryfeed': '모바일 레이아웃 > Card Feed & Story',
           'mobilefab': '모바일 레이아웃 > FAB Action',
